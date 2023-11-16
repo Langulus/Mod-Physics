@@ -8,37 +8,23 @@
 ///                                                                           
 #pragma once
 #include "Common.hpp"
-#include <Math/Instance.hpp>
 
 
 namespace Euclidean
 {
 
    ///                                                                        
-   ///   An Euclidean instance                                                
+   ///   Constraint                                                           
    ///                                                                        
-   /// Manages particles, instances, fields, constraints                      
+   /// Connects instances, allowing them to share energy                      
    ///                                                                        
-   struct Instance : A::Instance, ProducedFrom<World> {
+   struct Constraint : A::Physical, ProducedFrom<World> {
       LANGULUS(ABSTRACT) false;
       LANGULUS(PRODUCER) World;
-      LANGULUS_BASES(A::Instance);
-      using T = Math::TInstance<Vec3>;
-
-   private:
-      Pin<Ref<A::Mesh>> mDomain;
-      T mData;
+      LANGULUS_BASES(A::Physical);
 
    public:
-      Instance(World*, const Neat&);
-      Instance(DMeta, World*, const Neat&);
-
-      bool Cull(const LOD&) const noexcept override;
-      Level GetLevel() const noexcept override;
-      Mat4 GetModelTransform(const LOD&) const noexcept override;
-      Mat4 GetModelTransform(const Level& = {}) const noexcept override;
-      Mat4 GetViewTransform(const LOD&) const noexcept override;
-      Mat4 GetViewTransform(const Level& = {}) const noexcept override;
+      Constraint(World*, const Neat&);
 
       void Update(Real);
       void Refresh() override;

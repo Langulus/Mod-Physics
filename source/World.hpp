@@ -7,7 +7,10 @@
 /// See LICENSE file, or https://www.gnu.org/licenses                         
 ///                                                                           
 #pragma once
-#include "Common.hpp"
+#include "Instance.hpp"
+#include "Particles.hpp"
+#include "Constraint.hpp"
+#include "Field.hpp"
 #include <Flow/Verbs/Create.hpp>
 
 

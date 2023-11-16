@@ -7,38 +7,23 @@
 /// See LICENSE file, or https://www.gnu.org/licenses                         
 ///                                                                           
 #pragma once
-#include "Common.hpp"
-#include <Math/Instance.hpp>
+#include "Instance.hpp"
 
 
 namespace Euclidean
 {
 
    ///                                                                        
-   ///   An Euclidean instance                                                
+   ///   Particle system                                                      
    ///                                                                        
-   /// Manages particles, instances, fields, constraints                      
+   /// Manages particle emitters, colliders and state transitions             
    ///                                                                        
-   struct Instance : A::Instance, ProducedFrom<World> {
-      LANGULUS(ABSTRACT) false;
-      LANGULUS(PRODUCER) World;
-      LANGULUS_BASES(A::Instance);
-      using T = Math::TInstance<Vec3>;
-
-   private:
-      Pin<Ref<A::Mesh>> mDomain;
-      T mData;
+   struct Particles : Instance {
+      LANGULUS_BASES(Instance);
+      using Instance::T;
 
    public:
-      Instance(World*, const Neat&);
-      Instance(DMeta, World*, const Neat&);
-
-      bool Cull(const LOD&) const noexcept override;
-      Level GetLevel() const noexcept override;
-      Mat4 GetModelTransform(const LOD&) const noexcept override;
-      Mat4 GetModelTransform(const Level& = {}) const noexcept override;
-      Mat4 GetViewTransform(const LOD&) const noexcept override;
-      Mat4 GetViewTransform(const Level& = {}) const noexcept override;
+      Particles(World*, const Neat&);
 
       void Update(Real);
       void Refresh() override;
