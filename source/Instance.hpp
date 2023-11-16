@@ -8,6 +8,7 @@
 ///                                                                           
 #pragma once
 #include "Common.hpp"
+#include <Math/Instance.hpp>
 
 
 namespace Euclidean
@@ -18,24 +19,27 @@ namespace Euclidean
    ///                                                                        
    /// Manages particles, instances, fields, constraints                      
    ///                                                                        
-   struct Instance final : A::Instance, ProducedFrom<Euclidean::World> {
+   struct Instance : A::Instance, ProducedFrom<Euclidean::World> {
       LANGULUS(ABSTRACT) false;
       LANGULUS(PRODUCER) Euclidean::World;
       LANGULUS_BASES(A::Instance);
+      using T = Math::TInstance<Vec3>;
 
    private:
       Ref<A::Mesh> mDomain;
+      T mData;
 
    public:
       Instance(Euclidean::World*, const Neat&);
 
-      bool Cull(const LodState&) const override;
-      MatrixType GetLeveledTransformation(const LodState&) const override;
-      MemberType Distance(const A::Instance*) const override;
-      bool Intersect(const A::Instance*) const override;
-      void LookAt(const vec4&) override;
+      bool Cull(const LOD&) const noexcept override;
+      Level GetLevel() const noexcept override;
+      Mat4 GetModelTransform(const LOD&) const noexcept override;
+      Mat4 GetModelTransform(const Level& = {}) const noexcept override;
+      Mat4 GetViewTransform(const LOD&) const noexcept override;
+      Mat4 GetViewTransform(const Level& = {}) const noexcept override;
 
-      void Update(MemberType);
+      void Update(T::ScalarType);
       void Refresh();
    };
 
