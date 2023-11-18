@@ -19,8 +19,8 @@ using namespace Euclidean;
 World::World(Physics* producer, const Neat& descriptor)
    : A::World {MetaOf<Euclidean::World>(), descriptor}
    , ProducedFrom {producer, descriptor}
-   , mInstances {this}
    , mParticles {this}
+   , mInstances {this}
    , mConstraints {this}
    , mFields {this} {
    // Extract properties from descriptor and hierarchy                  

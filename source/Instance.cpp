@@ -8,11 +8,13 @@
 ///                                                                           
 #include "Instance.hpp"
 #include "Physics.hpp"
+#include <Math/Primitives/Frustum.hpp>
 
 using namespace Euclidean;
 
 
-/// Instance construction                                                     
+/// Abstract instance construction                                            
+///   @param concrete - the concrete instance type                            
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
 Instance::Instance(DMeta concrete, World* producer, const Neat& descriptor)
@@ -73,4 +75,24 @@ bool Instance::Cull(const LOD& state) const noexcept {
 
    const auto box = mData.GetRangeRotated(state.mLevel);
    return not state.mFrustum.Intersects(box);
+}
+
+Level Instance::GetLevel() const noexcept {
+   return mData.mLevel;
+}
+
+Mat4 Instance::GetModelTransform(const LOD& lod) const noexcept {
+   return mData.GetModelTransform(lod.mLevel);
+}
+
+Mat4 Instance::GetModelTransform(const Level& level) const noexcept {
+   return mData.GetModelTransform(level);
+}
+
+Mat4 Instance::GetViewTransform(const LOD& lod) const noexcept {
+   return mData.GetViewTransform(lod.mLevel);
+}
+
+Mat4 Instance::GetViewTransform(const Level& level) const noexcept {
+   return mData.GetViewTransform(level);
 }
