@@ -16,10 +16,10 @@ namespace Euclidean
    ///                                                                        
    ///   Field                                                                
    ///                                                                        
-   /// Affects instances over an area                                         
+   /// Affects instances over a volume                                        
    ///                                                                        
    struct Field : Instance {
-      LANGULUS_BASES(Instance);
+      LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
       using Instance::T;
 
    public:

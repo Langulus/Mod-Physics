@@ -28,31 +28,41 @@ SCENARIO("Window creation", "[window]") {
          root.CreateRuntime();
 
          // Load GLFW module                                            
-         root.LoadMod("GLFW");
+         root.LoadMod("Physics");
 
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
-         WHEN("The window is created via token") {
-            auto window = root.CreateUnitToken("A::Window");
+         WHEN("The instance is created via token") {
+            auto world = root.CreateUnitToken("A::World");
+            auto instance = root.CreateUnitToken("A::Instance");
 
             THEN("Various traits change") {
                root.DumpHierarchy();
 
-               REQUIRE(window.GetCount() == 1);
-               REQUIRE(window.IsSparse());
-               REQUIRE(window.CastsTo<A::Window>());
+               REQUIRE(world.GetCount() == 1);
+               REQUIRE(world.IsSparse());
+               REQUIRE(world.CastsTo<A::World>());
+               
+               REQUIRE(instance.GetCount() == 1);
+               REQUIRE(instance.IsSparse());
+               REQUIRE(instance.CastsTo<A::Instance>());
             }
          }
       #endif
          
-         WHEN("The window is created via abstraction") {
-            auto window = root.CreateUnit<A::Window>();
+         WHEN("The instance is created via abstraction") {
+            auto world = root.CreateUnit<A::World>();
+            auto instance = root.CreateUnit<A::Instance>();
 
             THEN("Various traits change") {
                root.DumpHierarchy();
 
-               REQUIRE(window.GetCount() == 1);
-               REQUIRE(window.IsSparse());
-               REQUIRE(window.CastsTo<A::Window>());
+               REQUIRE(world.GetCount() == 1);
+               REQUIRE(world.IsSparse());
+               REQUIRE(world.CastsTo<A::World>());
+
+               REQUIRE(instance.GetCount() == 1);
+               REQUIRE(instance.IsSparse());
+               REQUIRE(instance.CastsTo<A::Instance>());
             }
          }
 

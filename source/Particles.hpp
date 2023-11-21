@@ -19,7 +19,7 @@ namespace Euclidean
    /// Manages particle emitters, colliders and state transitions             
    ///                                                                        
    struct Particles : Instance {
-      LANGULUS_BASES(Instance);
+      LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
       using Instance::T;
 
    public:
