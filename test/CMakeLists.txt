@@ -15,9 +15,3 @@ add_test(
 	NAME		LangulusModPhysicsTest
 	COMMAND		LangulusModPhysicsTest
 )
-
-langulus_copy_dlls(LangulusModPhysicsTest ON LangulusModPhysicsTest)
-langulus_copy_dlls_advanced(LangulusModPhysicsTest
-	TO			LangulusModPhysicsTest
-	FROM		LangulusModPhysics
-)
