@@ -14,4 +14,5 @@ target_link_libraries(LangulusModPhysicsTest
 add_test(
 	NAME		LangulusModPhysicsTest
 	COMMAND		LangulusModPhysicsTest
+	WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 )
