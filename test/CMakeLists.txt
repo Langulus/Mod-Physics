@@ -11,6 +11,10 @@ target_link_libraries(LangulusModPhysicsTest
 				Catch2
 )
 
+add_dependencies(LangulusModPhysicsTest
+	LangulusModPhysics
+)
+
 add_test(
 	NAME		LangulusModPhysicsTest
 	COMMAND		LangulusModPhysicsTest
