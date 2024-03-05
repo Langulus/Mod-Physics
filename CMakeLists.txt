@@ -8,7 +8,7 @@ project(LangulusModPhysics
 file(GLOB_RECURSE
 	LANGULUS_MOD_PHYSICS_SOURCES 
 	LIST_DIRECTORIES FALSE CONFIGURE_DEPENDS
-	source/*.cpp source/*.hpp
+	source/*.cpp
 )
 
 # Build the module                                                              
