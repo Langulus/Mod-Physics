@@ -39,6 +39,8 @@ SCENARIO("Window creation", "[window]") {
             REQUIRE(instance.GetCount() == 1);
             REQUIRE(instance.IsSparse());
             REQUIRE(instance.CastsTo<A::Instance>());
+
+            REQUIRE(root.GetUnits().GetCount() == 2);
          }
 
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
@@ -55,6 +57,8 @@ SCENARIO("Window creation", "[window]") {
             REQUIRE(instance.GetCount() == 1);
             REQUIRE(instance.IsSparse());
             REQUIRE(instance.CastsTo<A::Instance>());
+
+            REQUIRE(root.GetUnits().GetCount() == 2);
          }
       #endif
 

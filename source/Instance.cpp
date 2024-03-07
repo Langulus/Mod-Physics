@@ -22,6 +22,7 @@ Instance::Instance(DMeta concrete, World* producer, const Neat& descriptor)
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
+   Couple(descriptor);
 }
 
 /// Instance construction                                                     

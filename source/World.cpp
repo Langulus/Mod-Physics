@@ -25,6 +25,7 @@ World::World(Physics* producer, const Neat& descriptor)
    , mFields {this} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
+   Couple(descriptor);
 }
 
 /// Refresh the world component on environment change                         

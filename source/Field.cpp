@@ -16,7 +16,9 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 Field::Field(World* producer, const Neat& descriptor)
-   : Instance {MetaOf<Field>(), producer, descriptor} {}
+   : Instance {MetaOf<Field>(), producer, descriptor} {
+   Couple(descriptor);
+}
 
 /// Refresh the world component on environment change                         
 void Field::Refresh() {

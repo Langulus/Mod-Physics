@@ -17,7 +17,9 @@ using namespace Euclidean;
 ///   @param descriptor - constraint descriptor                               
 Constraint::Constraint(World* producer, const Neat& descriptor)
    : A::Physical {MetaOf<Constraint>(), descriptor}
-   , ProducedFrom {producer, descriptor} {}
+   , ProducedFrom {producer, descriptor} {
+   Couple(descriptor);
+}
 
 /// Refresh the world component on environment change                         
 void Constraint::Refresh() {

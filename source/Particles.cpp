@@ -16,7 +16,9 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 Particles::Particles(World* producer, const Neat& descriptor)
-   : Instance {MetaOf<Particles>(), producer, descriptor} {}
+   : Instance {MetaOf<Particles>(), producer, descriptor} {
+   Couple(descriptor);
+}
 
 /// Refresh the particle system on environment change                         
 void Particles::Refresh() {
