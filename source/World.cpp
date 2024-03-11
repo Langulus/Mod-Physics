@@ -17,7 +17,7 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 World::World(Physics* producer, const Neat& descriptor)
-   : A::World {MetaOf<Euclidean::World>(), descriptor}
+   : A::World {MetaOf<Euclidean::World>()}
    , ProducedFrom {producer, descriptor}
    , mParticles {this}
    , mInstances {this}
@@ -25,7 +25,18 @@ World::World(Physics* producer, const Neat& descriptor)
    , mFields {this} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
+   VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
+   VERBOSE_PHYSICS("Initialized");
+}
+
+/// Detach the world from other modules                                       
+void World::Detach() {
+   mFields.Reset();
+   mInstances.Reset();
+   mConstraints.Reset();
+   mParticles.Reset();
+   ProducedFrom<Physics>::Detach();
 }
 
 /// Refresh the world component on environment change                         
@@ -54,13 +65,10 @@ void World::Update() {
 
    for (auto& field : mFields)
       field.Update(timeAsReal);
-
    for (auto& instance : mInstances)
       instance.Update(timeAsReal);
-
    for (auto& constraint : mConstraints)
       constraint.Update(timeAsReal);
-
    for (auto& particle : mParticles)
       particle.Update(timeAsReal);
 }

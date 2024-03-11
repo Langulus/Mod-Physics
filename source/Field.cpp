@@ -17,7 +17,9 @@ using namespace Euclidean;
 ///   @param descriptor - window descriptor                                   
 Field::Field(World* producer, const Neat& descriptor)
    : Instance {MetaOf<Field>(), producer, descriptor} {
+   VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
+   VERBOSE_PHYSICS("Initialized");
 }
 
 /// Refresh the world component on environment change                         

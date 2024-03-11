@@ -23,8 +23,8 @@ using namespace Euclidean;
 Physics::Physics(Runtime* runtime, const Neat&)
    : A::PhysicalModule {MetaOf<Physics>(), runtime}
    , mWorlds {this} {
-   Logger::Verbose(Self(), "Initializing...");
-   Logger::Verbose(Self(), "Initialized");
+   VERBOSE_PHYSICS("Initializing...");
+   VERBOSE_PHYSICS("Initialized");
 }
 
 /// Module update routine                                                     

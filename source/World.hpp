@@ -48,9 +48,10 @@ namespace Euclidean
    public:
       World(Physics*, const Neat&);
 
+      void Detach();
       void Refresh();
       void Update();
       void Create(Verb&);
    };
 
-}
+} // namespace Euclidean

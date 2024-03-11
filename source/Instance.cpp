@@ -18,11 +18,13 @@ using namespace Euclidean;
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
 Instance::Instance(DMeta concrete, World* producer, const Neat& descriptor)
-   : A::Instance {concrete, descriptor}
+   : A::Instance {concrete}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
+   VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
+   VERBOSE_PHYSICS("Initialized");
 }
 
 /// Instance construction                                                     
@@ -35,6 +37,13 @@ Instance::Instance(World* producer, const Neat& descriptor)
 void Instance::Refresh() {
    // Update the collision domain, if not pinned                        
    mDomain = SeekUnit<A::Mesh>();
+}
+
+/// Detach instance form other modules                                        
+void Instance::Detach() {
+   // Update the collision domain, if not pinned                        
+   mDomain->Reset();
+   ProducedFrom<World>::Detach();
 }
 
 /// Update the instance                                                       

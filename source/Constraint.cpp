@@ -16,9 +16,11 @@ using namespace Euclidean;
 ///   @param producer - the worlds that ouns the constraint                   
 ///   @param descriptor - constraint descriptor                               
 Constraint::Constraint(World* producer, const Neat& descriptor)
-   : A::Physical {MetaOf<Constraint>(), descriptor}
+   : A::Physical {MetaOf<Constraint>()}
    , ProducedFrom {producer, descriptor} {
+   VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
+   VERBOSE_PHYSICS("Initialized");
 }
 
 /// Refresh the world component on environment change                         

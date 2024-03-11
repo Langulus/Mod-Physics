@@ -42,6 +42,7 @@ namespace Euclidean
 
       void Update(Real);
       void Refresh() override;
+      void Detach();
    };
 
-}
+} // namespace Euclidean

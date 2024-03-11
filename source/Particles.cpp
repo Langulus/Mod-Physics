@@ -17,7 +17,9 @@ using namespace Euclidean;
 ///   @param descriptor - window descriptor                                   
 Particles::Particles(World* producer, const Neat& descriptor)
    : Instance {MetaOf<Particles>(), producer, descriptor} {
+   VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
+   VERBOSE_PHYSICS("Initialized");
 }
 
 /// Refresh the particle system on environment change                         

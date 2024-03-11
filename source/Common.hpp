@@ -21,3 +21,6 @@ namespace Euclidean
    struct Constraint;
    struct Field;
 }
+
+#define VERBOSE_PHYSICS(...)      Logger::Verbose(Self(), __VA_ARGS__)
+#define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::Verbose(Self(), __VA_ARGS__, Logger::Tabs {})
