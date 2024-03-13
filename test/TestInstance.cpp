@@ -7,6 +7,7 @@
 /// See LICENSE file, or https://www.gnu.org/licenses                         
 ///                                                                           
 #include "Main.hpp"
+#include <Langulus/Physical.hpp>
 #include <catch2/catch.hpp>
 
 

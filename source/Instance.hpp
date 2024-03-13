@@ -9,6 +9,7 @@
 #pragma once
 #include "Common.hpp"
 #include <Math/Instance.hpp>
+#include <Flow/Factory.hpp>
 
 
 namespace Euclidean

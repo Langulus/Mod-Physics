@@ -7,13 +7,15 @@
 /// See LICENSE file, or https://www.gnu.org/licenses                         
 ///                                                                           
 #pragma once
-#include <Entity/External.hpp>
+#include <Langulus.hpp>
+#include <Langulus/Physical.hpp>
+
+using namespace Langulus;
+using namespace Math;
 
 
 namespace Euclidean
 {
-   using namespace Langulus;
-
    struct Physics;
    struct World;
    struct Particles;

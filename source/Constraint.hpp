@@ -8,6 +8,7 @@
 ///                                                                           
 #pragma once
 #include "Common.hpp"
+#include <Flow/Factory.hpp>
 
 
 namespace Euclidean
@@ -30,4 +31,4 @@ namespace Euclidean
       void Refresh() override;
    };
 
-}
+} // namespace Euclidean
