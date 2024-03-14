@@ -39,9 +39,8 @@ void Instance::Refresh() {
    mDomain = SeekUnit<A::Mesh>();
 }
 
-/// Detach instance form other modules                                        
+/// Detach instance from other modules                                        
 void Instance::Detach() {
-   // Update the collision domain, if not pinned                        
    mDomain->Reset();
    ProducedFrom<World>::Detach();
 }

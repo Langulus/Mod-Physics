@@ -8,8 +8,9 @@
 ///                                                                           
 #pragma once
 #include "Common.hpp"
-#include <Math/Instance.hpp>
 #include <Flow/Factory.hpp>
+#include <Math/Instance.hpp>
+#include <Langulus/Mesh.hpp>
 
 
 namespace Euclidean
