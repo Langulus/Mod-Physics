@@ -16,7 +16,8 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 Field::Field(World* producer, const Neat& descriptor)
-   : Instance {MetaOf<Field>(), producer, descriptor} {
+   : Resolvable {MetaOf<Field>()}
+   , Instance {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
    VERBOSE_PHYSICS("Initialized");

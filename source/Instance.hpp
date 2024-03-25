@@ -33,7 +33,6 @@ namespace Euclidean
 
    public:
       Instance(World*, const Neat&);
-      Instance(DMeta, World*, const Neat&);
 
       bool Cull(const LOD&) const noexcept override;
       Level GetLevel() const noexcept override;

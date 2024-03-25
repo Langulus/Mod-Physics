@@ -16,7 +16,8 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 Particles::Particles(World* producer, const Neat& descriptor)
-   : Instance {MetaOf<Particles>(), producer, descriptor} {
+   : Resolvable {MetaOf<Particles>()}
+   , Instance {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
    VERBOSE_PHYSICS("Initialized");

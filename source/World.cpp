@@ -18,7 +18,7 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 World::World(Physics* producer, const Neat& descriptor)
-   : A::World {MetaOf<Euclidean::World>()}
+   : Resolvable {MetaOf<Euclidean::World>()}
    , ProducedFrom {producer, descriptor}
    , mParticles {this}
    , mInstances {this}

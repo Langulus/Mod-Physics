@@ -13,12 +13,11 @@
 using namespace Euclidean;
 
 
-/// Abstract instance construction                                            
-///   @param concrete - the concrete instance type                            
+/// Instance construction                                                     
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
-Instance::Instance(DMeta concrete, World* producer, const Neat& descriptor)
-   : A::Instance {concrete}
+Instance::Instance(World* producer, const Neat& descriptor)
+   : Resolvable {MetaOf<Euclidean::Instance>()}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
@@ -26,12 +25,6 @@ Instance::Instance(DMeta concrete, World* producer, const Neat& descriptor)
    Couple(descriptor);
    VERBOSE_PHYSICS("Initialized");
 }
-
-/// Instance construction                                                     
-///   @param producer - the world that owns the instance                      
-///   @param descriptor - instance descriptor                                 
-Instance::Instance(World* producer, const Neat& descriptor)
-   : Euclidean::Instance {MetaOf<Euclidean::Instance>(), producer, descriptor} {}
 
 /// Refresh the instance's properties on environment change                   
 void Instance::Refresh() {
