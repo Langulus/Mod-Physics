@@ -21,7 +21,7 @@ using namespace Euclidean;
 ///   @param runtime - the runtime that owns the module                       
 ///   @param descriptor - instructions for configuring the module             
 Physics::Physics(Runtime* runtime, const Neat&)
-   : Resolvable {MetaOf<Physics>()}
+   : Resolvable {this}
    , Module {runtime}
    , mWorlds {this} {
    VERBOSE_PHYSICS("Initializing...");

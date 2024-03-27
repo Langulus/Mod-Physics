@@ -17,7 +17,7 @@ using namespace Euclidean;
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
 Instance::Instance(World* producer, const Neat& descriptor)
-   : Resolvable {MetaOf<Euclidean::Instance>()}
+   : Resolvable {this}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
