@@ -35,7 +35,7 @@ void Instance::Refresh() {
 /// Detach instance from other modules                                        
 void Instance::Detach() {
    mDomain->Reset();
-   ProducedFrom<World>::Detach();
+   ProducedFrom::Detach();
 }
 
 /// Update the instance                                                       

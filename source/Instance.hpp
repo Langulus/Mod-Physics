@@ -34,12 +34,12 @@ namespace Euclidean
    public:
       Instance(World*, const Neat&);
 
-      bool Cull(const LOD&) const noexcept override;
-      Level GetLevel() const noexcept override;
-      Mat4 GetModelTransform(const LOD&) const noexcept override;
-      Mat4 GetModelTransform(const Level& = {}) const noexcept override;
-      Mat4 GetViewTransform(const LOD&) const noexcept override;
-      Mat4 GetViewTransform(const Level& = {}) const noexcept override;
+      auto Cull(const LOD&) const noexcept -> bool override;
+      auto GetLevel() const noexcept -> Level override;
+      auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;
+      auto GetModelTransform(const Level& = {}) const noexcept -> Mat4 override;
+      auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
+      auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
 
       void Update(Real);
       void Refresh() override;
