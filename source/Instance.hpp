@@ -11,6 +11,7 @@
 #include <Flow/Factory.hpp>
 #include <Math/Instance.hpp>
 #include <Langulus/Mesh.hpp>
+#include <Math/Color.hpp>
 
 
 namespace Euclidean
@@ -30,6 +31,7 @@ namespace Euclidean
    private:
       Pin<Ref<A::Mesh>> mDomain;
       T mData;
+      RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
    public:
       Instance(World*, const Neat&);
@@ -40,6 +42,7 @@ namespace Euclidean
       auto GetModelTransform(const Level& = {}) const noexcept -> Mat4 override;
       auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
       auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
+      auto GetColor() const noexcept -> RGBA override;
 
       void Update(Real);
       void Refresh() override;
