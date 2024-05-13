@@ -26,6 +26,7 @@ namespace Euclidean
       LANGULUS(ABSTRACT) false;
       LANGULUS(PRODUCER) World;
       LANGULUS_BASES(A::Instance);
+      LANGULUS_VERBS(Verbs::Move);
       using T = Math::TInstance<Vec3>;
 
    private:
@@ -36,6 +37,12 @@ namespace Euclidean
    public:
       Instance(World*, const Neat&);
 
+      void Update(Real);
+      void Refresh() override;
+      void Detach();
+
+      void Move(Verb&);
+
       auto Cull(const LOD&) const noexcept -> bool override;
       auto GetLevel() const noexcept -> Level override;
       auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;
@@ -43,10 +50,6 @@ namespace Euclidean
       auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
       auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
       auto GetColor() const noexcept -> RGBA override;
-
-      void Update(Real);
-      void Refresh() override;
-      void Detach();
    };
 
 } // namespace Euclidean

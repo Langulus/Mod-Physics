@@ -8,6 +8,12 @@
 ///                                                                           
 #include "Physics.hpp"
 
+#include <Math/Normal.hpp>
+#include <Math/Primitives.hpp>
+#include <Math/Angle.hpp>
+#include <Math/SimplexNoise.hpp>
+#include <Math/Config.hpp>
+
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",
    "Euclidean physics module, implementing spatiality", "",
@@ -25,6 +31,11 @@ Physics::Physics(Runtime* runtime, const Neat&)
    , Module {runtime}
    , mWorlds {this} {
    VERBOSE_PHYSICS("Initializing...");
+   Math::RegisterNormals();
+   Math::RegisterPrimitives();
+   Math::RegisterAngles();
+   Math::RegisterTraits();
+   Math::RegisterVerbs();
    VERBOSE_PHYSICS("Initialized");
 }
 

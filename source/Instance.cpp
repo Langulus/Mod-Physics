@@ -35,17 +35,6 @@ Instance::Instance(World* producer, const Neat& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
-/// Refresh the instance's properties on environment change                   
-void Instance::Refresh() {
-   mDomain = SeekUnit<A::Mesh>();
-}
-
-/// Detach instance from other modules                                        
-void Instance::Detach() {
-   mDomain->Reset();
-   ProducedFrom::Detach();
-}
-
 /// Update the instance                                                       
 void Instance::Update(Real dt) {
    mData.mVelocity +=
@@ -62,6 +51,91 @@ void Instance::Update(Real dt) {
 
    mData.mPosition = mData.GetPositionNext(dt);
    mData.mVelocity = mData.GetVelocityNext(dt);
+}
+
+/// Refresh the instance's properties on environment change                   
+void Instance::Refresh() {
+   mDomain = SeekUnit<A::Mesh>();
+}
+
+/// Detach instance from other modules                                        
+void Instance::Detach() {
+   mDomain->Reset();
+   ProducedFrom::Detach();
+}
+
+/// Move, rotate, resize verb                                                 
+///   @param verb - the resize verb                                           
+void Instance::Move(Verb& verb) {
+   if (verb.GetMass() <= 0)
+      TODO();
+
+   const auto mass = verb.GetMass();
+   const auto sign = Sign(mass);
+   bool   relative = true;
+   Yaw    total_yaw;
+   Pitch  total_pitch;
+   Roll   total_roll;
+   std::optional<Point3> total_point;
+   Scale3 total_scale;
+   Force3 total_move;
+
+   verb.ForEachDeep(
+      [&](const Traits::Relative& rel) {
+         relative = rel.AsCast<bool>();
+      },
+      [&](const Yaw& yaw) noexcept {
+         total_yaw = yaw * mass;
+      },
+      [&](const Pitch& pitch) noexcept {
+         total_pitch = pitch * mass;
+      },
+      [&](const Roll& roll) noexcept {
+         total_roll = roll * mass;
+      },
+      [&](const Scale& scale) noexcept {
+         total_scale = scale * mass;
+      },
+      [&](const Point& point) noexcept {
+         total_point = point;
+      },
+      [&](const Force& force) noexcept {
+         total_move = force;
+      },
+      [&](const Vec3& v3) noexcept {
+         total_move = v3 * mass;
+      },
+      [&](const Vec4& v4) noexcept {
+         total_move = v4 * mass;
+      },
+      [&](const Vec2& v2) noexcept {
+         total_move = v2 * mass;
+      }
+   );
+
+   if (total_yaw)
+      mData.Rotate(sign, total_yaw, relative);
+   if (total_pitch)
+      mData.Rotate(sign, total_pitch, relative);
+   if (total_roll)
+      mData.Rotate(sign, total_roll, relative);
+
+   if (total_point) {
+      if (relative)
+         mData.SetPosition<true>(total_point.value());
+      else
+         mData.SetPosition<false>(total_point.value());
+   }
+
+   if (total_scale) {
+      if (relative)
+         mData.SetScale<true>(total_scale);
+      else
+         mData.SetScale<false>(total_scale);
+   }
+
+   if (total_move)
+      mData.Move(sign, total_move, relative);
 }
 
 /// Cull the instance, based on lod state                                     
