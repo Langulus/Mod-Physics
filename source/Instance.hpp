@@ -27,11 +27,10 @@ namespace Euclidean
       LANGULUS(PRODUCER) World;
       LANGULUS_BASES(A::Instance);
       LANGULUS_VERBS(Verbs::Move);
-      using T = Math::TInstance<Vec3>;
 
    private:
       Pin<Ref<A::Mesh>> mDomain;
-      T mData;
+      Math::TInstance<Vec3> mData;
       RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
    public:

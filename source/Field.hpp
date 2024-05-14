@@ -20,7 +20,6 @@ namespace Euclidean
    ///                                                                        
    struct Field : Instance {
       LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
-      using Instance::T;
 
    public:
       Field(World*, const Neat&);
