@@ -23,10 +23,7 @@ SCENARIO("Window creation", "[window]") {
    for (int repeat = 0; repeat != 10; ++repeat) {
       GIVEN(std::string("Init and shutdown cycle #") + std::to_string(repeat)) {
          // Create root entity                                          
-         Thing root;
-         root.SetName("ROOT");
-         root.CreateRuntime();
-         root.LoadMod("Physics");
+         auto root = Thing::Root<false>("Physics");
          
          WHEN("The instance is created via abstraction") {
             auto world = root.CreateUnit<A::World>();
