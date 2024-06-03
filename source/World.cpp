@@ -51,7 +51,7 @@ void World::Update() {
    // Get the time gradient                                             
    Math::TGrad<Time> timeGradient;
    if (not SeekValue<Traits::Time>(timeGradient)) {
-      Logger::Warning("No time gradient found, so no update performed");
+      Logger::Warning(Self(), "No time gradient found, so no update performed");
       return;
    }
 
