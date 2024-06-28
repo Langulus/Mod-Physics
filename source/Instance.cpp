@@ -21,16 +21,16 @@ Instance::Instance(World* producer, const Neat& descriptor)
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
-   SeekValueAux<Traits::Place>(descriptor, mData.mPosition);
-   SeekValueAux<Traits::Size>(descriptor, mData.mScale);
-   SeekValueAux<Traits::Aim>(descriptor, mData.mAim);
-   SeekValueAux<Traits::Level>(descriptor, mData.mLevel);
+   SeekValueAux<Traits::Place       >(descriptor, mData.mPosition    );
+   SeekValueAux<Traits::Size        >(descriptor, mData.mScale       );
+   SeekValueAux<Traits::Aim         >(descriptor, mData.mAim         );
+   SeekValueAux<Traits::Level       >(descriptor, mData.mLevel       );
    SeekValueAux<Traits::Acceleration>(descriptor, mData.mAcceleration);
-   SeekValueAux<Traits::Bilateral>(descriptor, mData.mBilateral);
-   SeekValueAux<Traits::Pickable>(descriptor, mData.mPickable);
-   SeekValueAux<Traits::Solid>(descriptor, mData.mSolid);
-   SeekValueAux<Traits::Velocity>(descriptor, mData.mVelocity);
-   SeekValueAux<Traits::Static>(descriptor, mData.mStatic);
+   SeekValueAux<Traits::Bilateral   >(descriptor, mData.mBilateral   );
+   SeekValueAux<Traits::Pickable    >(descriptor, mData.mPickable    );
+   SeekValueAux<Traits::Solid       >(descriptor, mData.mSolid       );
+   SeekValueAux<Traits::Velocity    >(descriptor, mData.mVelocity    );
+   SeekValueAux<Traits::Static      >(descriptor, mData.mStatic      );
    SeekValueAux(descriptor, mColor);
    VERBOSE_PHYSICS("Initialized");
 }
