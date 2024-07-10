@@ -26,7 +26,7 @@ namespace Euclidean
 
 #if 0
    #define VERBOSE_PHYSICS(...)      Logger::Verbose(Self(), __VA_ARGS__)
-   #define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::Verbose(Self(), __VA_ARGS__, Logger::Tabs {})
+   #define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::VerboseTab(Self(), __VA_ARGS__)
 #else
    #define VERBOSE_PHYSICS(...)      LANGULUS(NOOP)
    #define VERBOSE_PHYSICS_TAB(...)  LANGULUS(NOOP)
