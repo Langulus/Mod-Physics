@@ -29,8 +29,11 @@ namespace Euclidean
       LANGULUS_VERBS(Verbs::Move);
 
    private:
+      // Collision domain                                               
       Pin<Ref<A::Mesh>> mDomain;
+      // Instance data                                                  
       Math::TInstance<Vec3> mData;
+      // Instance color                                                 
       RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
    public:
