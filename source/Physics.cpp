@@ -29,7 +29,7 @@ using namespace Euclidean;
 Physics::Physics(Runtime* runtime, const Neat&)
    : Resolvable {this}
    , Module {runtime}
-   , mWorlds {this} {
+   /*, mWorlds {this}*/ {
    VERBOSE_PHYSICS("Initializing...");
    Math::RegisterVectors();
    Math::RegisterNormals();
@@ -51,5 +51,5 @@ bool Physics::Update(Time) {
 /// Create/Destroy worlds                                                     
 ///   @param verb - the creation/destruction verb                             
 void Physics::Create(Verb& verb) {
-   mWorlds.Create(verb);
+   mWorlds.Create(this, verb);
 }

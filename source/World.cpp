@@ -20,10 +20,10 @@ using namespace Euclidean;
 World::World(Physics* producer, const Neat& descriptor)
    : Resolvable {this}
    , ProducedFrom {producer, descriptor}
-   , mParticles {this}
+   /*, mParticles {this}
    , mInstances {this}
    , mConstraints {this}
-   , mFields {this} {
+   , mFields {this}*/ {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
    VERBOSE_PHYSICS("Initializing...");
@@ -77,8 +77,8 @@ void World::Update() {
 /// Introduce instances, particles, etc.                                      
 ///  @param verb - creation verb                                              
 void World::Create(Verb& verb) {
-   mInstances.Create(verb);
-   mParticles.Create(verb);
-   mConstraints.Create(verb);
-   mFields.Create(verb);
+   mInstances.Create(this, verb);
+   mParticles.Create(this, verb);
+   mConstraints.Create(this, verb);
+   mFields.Create(this, verb);
 }
