@@ -28,8 +28,7 @@ using namespace Euclidean;
 ///   @param descriptor - instructions for configuring the module             
 Physics::Physics(Runtime* runtime, const Neat&)
    : Resolvable {this}
-   , Module {runtime}
-   /*, mWorlds {this}*/ {
+   , Module     {runtime} {
    VERBOSE_PHYSICS("Initializing...");
    Math::RegisterVectors();
    Math::RegisterNormals();

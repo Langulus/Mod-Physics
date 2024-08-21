@@ -18,12 +18,8 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 World::World(Physics* producer, const Neat& descriptor)
-   : Resolvable {this}
-   , ProducedFrom {producer, descriptor}
-   /*, mParticles {this}
-   , mInstances {this}
-   , mConstraints {this}
-   , mFields {this}*/ {
+   : Resolvable   {this}
+   , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Traits::Size>(descriptor, mSize);
    VERBOSE_PHYSICS("Initializing...");

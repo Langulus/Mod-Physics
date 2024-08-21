@@ -17,7 +17,7 @@ using namespace Euclidean;
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
 Instance::Instance(World* producer, const Neat& descriptor)
-   : Resolvable {this}
+   : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
