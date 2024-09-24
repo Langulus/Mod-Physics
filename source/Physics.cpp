@@ -31,6 +31,7 @@ Physics::Physics(Runtime* runtime, const Neat&)
    , Module     {runtime} {
    VERBOSE_PHYSICS("Initializing...");
    Math::RegisterVectors();
+   Math::RegisterRanges();
    Math::RegisterNormals();
    Math::RegisterPrimitives();
    Math::RegisterAngles();
