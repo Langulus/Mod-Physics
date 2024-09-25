@@ -24,7 +24,7 @@ namespace Euclidean
       LANGULUS_BASES(A::Physical);
 
    public:
-      Constraint(World*, const Neat&);
+      Constraint(World*, Describe);
 
       void Update(Real);
       void Refresh() override;

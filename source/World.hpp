@@ -45,7 +45,7 @@ namespace Euclidean
       TFactory<Field> mFields;
 
    public:
-      World(Physics*, const Neat&);
+      World(Physics*, Describe);
 
       void Detach();
       void Refresh();

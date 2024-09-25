@@ -21,7 +21,7 @@ namespace Euclidean
       LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
 
    public:
-      Particles(World*, const Neat&);
+      Particles(World*, Describe);
 
       void Update(Real);
       void Refresh() override;

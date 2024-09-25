@@ -25,7 +25,7 @@ using namespace Euclidean;
 /// Module construction                                                       
 ///   @param runtime - the runtime that owns the module                       
 ///   @param descriptor - instructions for configuring the module             
-Physics::Physics(Runtime* runtime, const Neat&)
+Physics::Physics(Runtime* runtime, Describe)
    : Resolvable {this}
    , Module     {runtime} {
    VERBOSE_PHYSICS("Initializing...");
