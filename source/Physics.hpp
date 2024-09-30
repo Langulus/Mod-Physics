@@ -27,7 +27,7 @@ namespace Euclidean
       TFactory<World> mWorlds;
 
    public:
-      Physics(Runtime*, Describe);
+      Physics(Runtime*, const Many&);
 
       bool Update(Time);
       void Create(Verb&);

@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// Particle system construction                                              
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
-Particles::Particles(World* producer, Describe descriptor)
+Particles::Particles(World* producer, const Many& descriptor)
    : Resolvable {this}
    , Instance   {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");

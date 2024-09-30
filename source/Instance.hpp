@@ -36,7 +36,7 @@ namespace Euclidean
       RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
    public:
-      Instance(World*, Describe);
+      Instance(World*, const Many&);
 
       void Update(Real);
       void Refresh() override;

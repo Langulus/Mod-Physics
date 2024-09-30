@@ -15,7 +15,7 @@ using namespace Euclidean;
 /// Instance construction                                                     
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
-Instance::Instance(World* producer, Describe descriptor)
+Instance::Instance(World* producer, const Many& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
