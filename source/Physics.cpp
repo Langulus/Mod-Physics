@@ -37,6 +37,12 @@ Physics::Physics(Runtime* runtime, const Many&)
    VERBOSE_PHYSICS("Initialized");
 }
 
+/// Shutdown physics                                                          
+Physics::~Physics() {
+   for (auto& world : mWorlds)
+      world.Detach();
+}
+
 /// Module update routine                                                     
 ///   @param dt - time from last update                                       
 bool Physics::Update(Time) {

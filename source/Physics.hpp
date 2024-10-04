@@ -24,10 +24,12 @@ namespace Euclidean
       LANGULUS_VERBS(Verbs::Create);
 
    private:
+      // List of created worlds                                         
       TFactory<World> mWorlds;
 
    public:
-      Physics(Runtime*, const Many&);
+       Physics(Runtime*, const Many&);
+      ~Physics();
 
       bool Update(Time);
       void Create(Verb&);
