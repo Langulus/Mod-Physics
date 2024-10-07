@@ -39,8 +39,7 @@ Physics::Physics(Runtime* runtime, const Many&)
 
 /// Shutdown physics                                                          
 Physics::~Physics() {
-   for (auto& world : mWorlds)
-      world.Detach();
+   mWorlds.Reset();
 }
 
 /// Module update routine                                                     
