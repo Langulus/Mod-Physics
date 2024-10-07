@@ -28,10 +28,14 @@ World::World(Physics* producer, const Many& descriptor)
 
 /// Detach the world from other modules                                       
 void World::Detach() {
-   mFields.Reset();
-   mInstances.Reset();
-   mConstraints.Reset();
-   mParticles.Reset();
+   for (auto& item : mFields)
+      item.Detach();
+   for (auto& item : mInstances)
+      item.Detach();
+   for (auto& item : mConstraints)
+      item.Detach();
+   for (auto& item : mParticles)
+      item.Detach();
    ProducedFrom<Physics>::Detach();
 }
 
