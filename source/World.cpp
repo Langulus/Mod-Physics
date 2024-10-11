@@ -43,6 +43,8 @@ void World::Refresh() {
 
 /// Update the window                                                         
 void World::Update() {
+   Logger::Info(Self(), ": Updating...");
+
    // Get the time gradient                                             
    Math::TGrad<Time> timeGradient;
    if (not SeekValue<Traits::Time>(timeGradient)) {
@@ -67,6 +69,8 @@ void World::Update() {
       constraint.Update(timeAsReal);
    for (auto& particle : mParticles)
       particle.Update(timeAsReal);
+
+   Logger::Info(Self(), ": Updated");
 }
 
 /// Introduce instances, particles, etc.                                      
