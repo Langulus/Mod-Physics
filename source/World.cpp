@@ -43,8 +43,6 @@ void World::Refresh() {
 
 /// Update the window                                                         
 void World::Update() {
-   Logger::Info(Self(), ": Updating...");
-
    // Get the time gradient                                             
    Math::TGrad<Time> timeGradient;
    if (not SeekValue<Traits::Time>(timeGradient)) {
