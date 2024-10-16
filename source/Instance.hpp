@@ -40,7 +40,7 @@ namespace Euclidean
 
       void Update(Real);
       void Refresh() override;
-      void Detach();
+      auto Reference(int) -> Count;
 
       void Move(Verb&);
 

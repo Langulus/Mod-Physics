@@ -34,6 +34,16 @@ Instance::Instance(World* producer, const Many& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
+/// Reference the instance, triggering teardown if no longer used             
+auto Instance::Reference(int x) -> Count {
+   if (A::Instance::Reference(x) == 1) {
+      mDomain.Reset();
+      ProducedFrom::Teardown();
+   }
+
+   return GetReferences();
+}
+
 /// Update the instance                                                       
 void Instance::Update(Real dt) {
    mData.mVelocity +=
@@ -55,12 +65,6 @@ void Instance::Update(Real dt) {
 /// Refresh the instance's properties on environment change                   
 void Instance::Refresh() {
    mDomain = SeekUnit<A::Mesh>();
-}
-
-/// Detach instance from other modules                                        
-void Instance::Detach() {
-   mDomain.Reset();
-   ProducedFrom::Detach();
 }
 
 /// Move, rotate, resize verb                                                 

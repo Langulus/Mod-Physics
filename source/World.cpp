@@ -26,13 +26,17 @@ World::World(Physics* producer, const Many& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
-/// Detach the world from other modules                                       
-void World::Detach() {
-   mFields.Reset();
-   mInstances.Reset();
-   mConstraints.Reset();
-   mParticles.Reset();
-   ProducedFrom::Detach();
+/// Reference the instance, triggering teardown if no longer used             
+auto World::Reference(int x) -> Count {
+   if (A::World::Reference(x) == 1) {
+      mFields.Teardown();
+      mInstances.Teardown();
+      mConstraints.Teardown();
+      mParticles.Teardown();
+      ProducedFrom::Teardown();
+   }
+
+   return GetReferences();
 }
 
 /// Refresh the world component on environment change                         
