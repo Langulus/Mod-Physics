@@ -32,6 +32,7 @@ namespace Euclidean
 
       bool Update(Time);
       void Create(Verb&);
+      void Teardown();
    };
 
 }

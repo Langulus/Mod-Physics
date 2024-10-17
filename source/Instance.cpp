@@ -34,16 +34,6 @@ Instance::Instance(World* producer, const Many& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
-/// Reference the instance, triggering teardown if no longer used             
-auto Instance::Reference(int x) -> Count {
-   if (A::Instance::Reference(x) == 1) {
-      mDomain.Reset();
-      ProducedFrom::Teardown();
-   }
-
-   return GetReferences();
-}
-
 /// Update the instance                                                       
 void Instance::Update(Real dt) {
    mData.mVelocity +=

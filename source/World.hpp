@@ -47,10 +47,10 @@ namespace Euclidean
    public:
       World(Physics*, const Many&);
 
-      auto Reference(int) -> Count;
       void Refresh();
       void Update();
       void Create(Verb&);
+      void Teardown();
    };
 
 } // namespace Euclidean

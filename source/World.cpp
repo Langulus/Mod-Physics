@@ -26,17 +26,12 @@ World::World(Physics* producer, const Many& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
-/// Reference the instance, triggering teardown if no longer used             
-auto World::Reference(int x) -> Count {
-   if (A::World::Reference(x) == 1) {
-      mFields.Teardown();
-      mInstances.Teardown();
-      mConstraints.Teardown();
-      mParticles.Teardown();
-      ProducedFrom::Teardown();
-   }
-
-   return GetReferences();
+/// First stage destruction                                                   
+void World::Teardown() {
+   mFields.Teardown();
+   mInstances.Teardown();
+   mConstraints.Teardown();
+   mParticles.Teardown();
 }
 
 /// Refresh the world component on environment change                         

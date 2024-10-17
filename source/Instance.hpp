@@ -38,12 +38,10 @@ namespace Euclidean
    public:
       Instance(World*, const Many&);
 
-      void Update(Real);
-      void Refresh() override;
-      auto Reference(int) -> Count;
-
       void Move(Verb&);
 
+      void Update(Real);
+      void Refresh() override;
       auto Cull(const LOD&) const noexcept -> bool override;
       auto GetLevel() const noexcept -> Level override;
       auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;

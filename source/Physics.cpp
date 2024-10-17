@@ -37,6 +37,11 @@ Physics::Physics(Runtime* runtime, const Many&)
    VERBOSE_PHYSICS("Initialized");
 }
 
+/// First stage destruction                                                   
+void Physics::Teardown() {
+   mWorlds.Teardown();
+}
+
 /// Module update routine                                                     
 ///   @param dt - time from last update                                       
 bool Physics::Update(Time) {
