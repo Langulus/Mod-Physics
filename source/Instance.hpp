@@ -13,42 +13,38 @@
 #include <Math/Color.hpp>
 
 
-namespace Euclidean
-{
+///                                                                           
+///   An Euclidean instance                                                   
+///                                                                           
+/// Manages particles, instances, fields, constraints                         
+///                                                                           
+struct Euclidean::Instance : A::Instance, ProducedFrom<World> {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS(PRODUCER) World;
+   LANGULUS_BASES(A::Instance);
+   LANGULUS_VERBS(Verbs::Move);
 
-   ///                                                                        
-   ///   An Euclidean instance                                                
-   ///                                                                        
-   /// Manages particles, instances, fields, constraints                      
-   ///                                                                        
-   struct Instance : A::Instance, ProducedFrom<World> {
-      LANGULUS(ABSTRACT) false;
-      LANGULUS(PRODUCER) World;
-      LANGULUS_BASES(A::Instance);
-      LANGULUS_VERBS(Verbs::Move);
+private:
+   // Collision domain                                                  
+   Pin<Ref<A::Mesh>> mDomain;
+   // Instance data                                                     
+   Math::TInstance<Vec3> mData;
+   // Instance color                                                    
+   RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
-   private:
-      // Collision domain                                               
-      Pin<Ref<A::Mesh>> mDomain;
-      // Instance data                                                  
-      Math::TInstance<Vec3> mData;
-      // Instance color                                                 
-      RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
+public:
+   Instance(World*, const Many&);
 
-   public:
-      Instance(World*, const Many&);
+   void Move(Verb&);
 
-      void Move(Verb&);
-
-      void Update(Real);
-      void Refresh() override;
-      auto Cull(const LOD&) const noexcept -> bool override;
-      auto GetLevel() const noexcept -> Level override;
-      auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;
-      auto GetModelTransform(const Level& = {}) const noexcept -> Mat4 override;
-      auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
-      auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
-      auto GetColor() const noexcept -> RGBA override;
-   };
-
-} // namespace Euclidean
+   void Update(Real);
+   void Refresh() override;
+   void Teardown();
+   auto Cull(const LOD&) const noexcept -> bool override;
+   auto GetLevel() const noexcept -> Level override;
+   auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;
+   auto GetModelTransform(const Level& = {}) const noexcept -> Mat4 override;
+   auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
+   auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
+   auto GetColor() const noexcept -> RGBA override;
+};

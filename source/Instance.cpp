@@ -52,6 +52,12 @@ void Instance::Update(Real dt) {
    mData.mVelocity = mData.GetVelocityNext(dt);
 }
 
+/// First stage destruction                                                   
+void Instance::Teardown() {
+   mDomain.Reset();
+   mData.mParent.Reset();
+}
+
 /// Refresh the instance's properties on environment change                   
 void Instance::Refresh() {
    mDomain = SeekUnit<A::Mesh>();

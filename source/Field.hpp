@@ -9,22 +9,17 @@
 #include "Instance.hpp"
 
 
-namespace Euclidean
-{
+///                                                                           
+///   Field                                                                   
+///                                                                           
+/// Affects instances over a volume                                           
+///                                                                           
+struct Euclidean::Field : Instance {
+   LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
 
-   ///                                                                        
-   ///   Field                                                                
-   ///                                                                        
-   /// Affects instances over a volume                                        
-   ///                                                                        
-   struct Field : Instance {
-      LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
+public:
+   Field(World*, const Many&);
 
-   public:
-      Field(World*, const Many&);
-
-      void Update(Real);
-      void Refresh() override;
-   };
-
-}
+   void Update(Real);
+   void Refresh() override;
+};

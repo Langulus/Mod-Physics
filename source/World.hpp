@@ -13,44 +13,38 @@
 #include <Flow/Verbs/Create.hpp>
 
 
-namespace Euclidean
-{
+///                                                                           
+///   An Euclidean world                                                      
+///                                                                           
+/// Manages particles, instances, fields, constraints                         
+///                                                                           
+struct Euclidean::World final : A::World, ProducedFrom<Physics> {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS(PRODUCER) Physics;
+   LANGULUS_BASES(A::World);
+   LANGULUS_VERBS(Verbs::Create);
 
-   ///                                                                        
-   ///   An Euclidean world                                                   
-   ///                                                                        
-   /// Manages particles, instances, fields, constraints                      
-   ///                                                                        
-   struct World final : A::World, ProducedFrom<Physics> {
-      LANGULUS(ABSTRACT) false;
-      LANGULUS(PRODUCER) Physics;
-      LANGULUS_BASES(A::World);
-      LANGULUS_VERBS(Verbs::Create);
+private:
+   // Particle systems are optimized for large quantity of              
+   // instances that share the same physical behavior                   
+   TFactory<Particles> mParticles;
+   // Simulated instances in the world - each instance contains the     
+   // spatial data for a thing, and serves as a manager for physical    
+   // properties like collision domain, material properties, etc.       
+   TFactory<Instance> mInstances;
+   // Forces that act upon specific instances                           
+   // Can be used to compose complex multi-instance/entity objects,     
+   // whose parts have different behaviors like ragdolls and structures 
+   TFactory<Constraint> mConstraints;
+   // Heat, fluid, electromagnetic, whatever - fields describe          
+   // behavior over a volume, affecting particles and instances         
+   TFactory<Field> mFields;
 
-   private:
-      // Particle systems are optimized for large quantity of           
-      // instances that share the same physical behavior                
-      TFactory<Particles> mParticles;
-      // Simulated instances in the world - each instance contains the  
-      // spatial data for a thing, and serves as a manager for physical 
-      // properties, like collision domain, material properties, etc.   
-      TFactory<Instance> mInstances;
-      // Forces that act upon specific instances                        
-      // Can be used to compose complex multi-instance/entity objects,  
-      // whose parts have different behaviors, like for example         
-      // ragdolls and structures                                        
-      TFactory<Constraint> mConstraints;
-      // Heat, fluid, electromagnetic, whatever - fields describe       
-      // behavior over a volume, affecting particles and instances      
-      TFactory<Field> mFields;
+public:
+   World(Physics*, const Many&);
 
-   public:
-      World(Physics*, const Many&);
-
-      void Refresh();
-      void Update();
-      void Create(Verb&);
-      void Teardown();
-   };
-
-} // namespace Euclidean
+   void Refresh();
+   void Update();
+   void Create(Verb&);
+   void Teardown();
+};

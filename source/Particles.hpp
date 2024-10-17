@@ -9,22 +9,17 @@
 #include "Instance.hpp"
 
 
-namespace Euclidean
-{
+///                                                                           
+///   Particle system                                                         
+///                                                                           
+/// Manages particle emitters, colliders and state transitions                
+///                                                                           
+struct Euclidean::Particles : Instance {
+   LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
 
-   ///                                                                        
-   ///   Particle system                                                      
-   ///                                                                        
-   /// Manages particle emitters, colliders and state transitions             
-   ///                                                                        
-   struct Particles : Instance {
-      LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
+public:
+   Particles(World*, const Many&);
 
-   public:
-      Particles(World*, const Many&);
-
-      void Update(Real);
-      void Refresh() override;
-   };
-
-}
+   void Update(Real);
+   void Refresh() override;
+};

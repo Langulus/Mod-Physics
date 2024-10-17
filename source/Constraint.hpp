@@ -10,24 +10,19 @@
 #include <Flow/Factory.hpp>
 
 
-namespace Euclidean
-{
+///                                                                           
+///   Constraint                                                              
+///                                                                           
+/// Connects instances, allowing them to share energy                         
+///                                                                           
+struct Euclidean::Constraint : A::Physical, ProducedFrom<World> {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS(PRODUCER) World;
+   LANGULUS_BASES(A::Physical);
 
-   ///                                                                        
-   ///   Constraint                                                           
-   ///                                                                        
-   /// Connects instances, allowing them to share energy                      
-   ///                                                                        
-   struct Constraint : A::Physical, ProducedFrom<World> {
-      LANGULUS(ABSTRACT) false;
-      LANGULUS(PRODUCER) World;
-      LANGULUS_BASES(A::Physical);
+public:
+   Constraint(World*, const Many&);
 
-   public:
-      Constraint(World*, const Many&);
-
-      void Update(Real);
-      void Refresh() override;
-   };
-
-} // namespace Euclidean
+   void Update(Real);
+   void Refresh() override;
+};

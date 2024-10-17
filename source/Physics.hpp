@@ -10,29 +10,24 @@
 #include <Flow/Verbs/Create.hpp>
 
 
-namespace Euclidean
-{
+///                                                                           
+///   Physics module                                                          
+///                                                                           
+/// Manages and produces Euclidean worlds                                     
+///                                                                           
+struct Euclidean::Physics final : A::PhysicalModule {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS_BASES(A::PhysicalModule);
+   LANGULUS_VERBS(Verbs::Create);
 
-   ///                                                                        
-   ///   Physics module                                                       
-   ///                                                                        
-   /// Manages and produces Euclidean worlds                                  
-   ///                                                                        
-   struct Physics final : A::PhysicalModule {
-      LANGULUS(ABSTRACT) false;
-      LANGULUS_BASES(A::PhysicalModule);
-      LANGULUS_VERBS(Verbs::Create);
+private:
+   // List of created worlds                                         
+   TFactory<Euclidean::World> mWorlds;
 
-   private:
-      // List of created worlds                                         
-      TFactory<World> mWorlds;
+public:
+   Physics(Runtime*, const Many&);
 
-   public:
-      Physics(Runtime*, const Many&);
-
-      bool Update(Time);
-      void Create(Verb&);
-      void Teardown();
-   };
-
-}
+   bool Update(Time);
+   void Create(Verb&);
+   void Teardown();
+};
