@@ -12,11 +12,7 @@ file(GLOB_RECURSE
 )
 
 # Build the module                                                              
-add_library(LangulusModPhysics SHARED ${LANGULUS_MOD_PHYSICS_SOURCES})
-
-target_link_libraries(LangulusModPhysics
-    PRIVATE     Langulus
-)
+add_langulus_mod(LangulusModPhysics ${LANGULUS_MOD_PHYSICS_SOURCES})
 
 if(LANGULUS_TESTING)
     enable_testing()
