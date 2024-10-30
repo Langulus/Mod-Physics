@@ -4,19 +4,8 @@ file(GLOB_RECURSE
 	*.cpp
 )
 
-add_executable(LangulusModPhysicsTest ${LANGULUS_MOD_PHYSICS_TEST_SOURCES})
-
-target_link_libraries(LangulusModPhysicsTest
-	PRIVATE		Langulus
-				Catch2
-)
-
-add_dependencies(LangulusModPhysicsTest
-	LangulusModPhysics
-)
-
-add_test(
-	NAME		LangulusModPhysicsTest
-	COMMAND		LangulusModPhysicsTest
-	WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+add_langulus_test(LangulusModPhysicsTest
+	SOURCES			${LANGULUS_MOD_PHYSICS_TEST_SOURCES}
+	LIBRARIES		Langulus
+	DEPENDENCIES    LangulusModPhysics
 )
