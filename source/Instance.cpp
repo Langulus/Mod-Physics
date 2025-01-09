@@ -35,21 +35,34 @@ Instance::Instance(World* producer, const Many& descriptor)
 }
 
 /// Update the instance                                                       
+///   @param dt - time between updates, in seconds                            
 void Instance::Update(Real dt) {
-   mData.mVelocity +=
-      (mData.mUseVelocity * dt * mData.mUseBoundness) +
-      (mData.mSimVelocity * dt * mData.mSimBoundness);
-   mData.mLevel +=
-      (mData.mUseLevelChange * Level(dt * mData.mUseBoundness)) +
-      (mData.mSimLevelChange * Level(dt * mData.mSimBoundness));
+   // Apply one-time impulse                                            
+   mData.mImpulse +=
+      (mData.mUseImpulse * mData.mUseBoundness) +
+      (mData.mSimImpulse * mData.mSimBoundness);
+   mData.mUseImpulse = 0;
+   mData.mSimImpulse = 0;
 
+   mData.mPosition += mData.mImpulse * dt;
+   mData.mImpulse = 0;
+
+   // Change velocity and apply it                                      
+   mData.mVelocity +=
+      (mData.mUseVelocity * mData.mUseBoundness) +
+      (mData.mSimVelocity * mData.mSimBoundness);
    mData.mUseVelocity = 0;
    mData.mSimVelocity = 0;
-   mData.mSimLevelChange = 0;
-   mData.mUseLevelChange = 0;
 
    mData.mPosition = mData.GetPositionNext(dt);
    mData.mVelocity = mData.GetVelocityNext(dt);
+
+   // Change level                                                      
+   mData.mLevel +=
+      (mData.mUseLevelChange * Level(dt * mData.mUseBoundness)) +
+      (mData.mSimLevelChange * Level(dt * mData.mSimBoundness));
+   mData.mSimLevelChange = 0;
+   mData.mUseLevelChange = 0;
 }
 
 /// First stage destruction                                                   
@@ -64,7 +77,7 @@ void Instance::Refresh() {
 }
 
 /// Move, rotate, resize verb                                                 
-///   @param verb - the resize verb                                           
+///   @param verb - the move verb                                             
 void Instance::Move(Verb& verb) {
    mData.Move(verb);
 }

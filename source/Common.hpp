@@ -23,7 +23,7 @@ namespace Euclidean
    struct Field;
 }
 
-#if 0
+#if 1
    #define VERBOSE_PHYSICS(...)      Logger::Verbose(Self(), __VA_ARGS__)
    #define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::VerboseTab(Self(), __VA_ARGS__)
 #else

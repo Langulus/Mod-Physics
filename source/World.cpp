@@ -43,21 +43,16 @@ void World::Refresh() {
 /// Update the window                                                         
 void World::Update() {
    // Get the time gradient                                             
-   Math::TGrad<Time> timeGradient;
-   if (not SeekValue<Traits::Time>(timeGradient)) {
-      Logger::Warning(Self(), "No time gradient found, so no update performed");
-      return;
-   }
-
-   if (not timeGradient.Delta()) {
-      // No time had passed, so no need to update anything              
-      // This is not an error                                           
+   const auto flow = GetFlow();
+   if (not flow) {
+      VERBOSE_PHYSICS(Logger::DarkYellow, "No time gradient found, so no update performed");
       return;
    }
 
    // Calculate the real delta time factor with required precision      
-   const auto timeAsReal = timeGradient.Delta().Seconds();
+   const auto timeAsReal = GetFlow()->GetDeltaTime().Seconds();
 
+   // Update all components of the simulation                           
    for (auto& field : mFields)
       field.Update(timeAsReal);
    for (auto& instance : mInstances)
@@ -67,7 +62,7 @@ void World::Update() {
    for (auto& particle : mParticles)
       particle.Update(timeAsReal);
 
-   Logger::Info(Self(), ": Updated");
+   VERBOSE_PHYSICS("Advanced ", timeAsReal, " seconds");
 }
 
 /// Introduce instances, particles, etc.                                      
