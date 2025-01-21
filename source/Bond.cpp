@@ -5,16 +5,16 @@
 ///                                                                           
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
-#include "Constraint.hpp"
+#include "Bond.hpp"
 #include "Physics.hpp"
 
 using namespace Euclidean;
 
 
-/// Constraint construction                                                   
+/// Bond construction                                                         
 ///   @param producer - the worlds that ouns the constraint                   
 ///   @param descriptor - constraint descriptor                               
-Constraint::Constraint(World* producer, const Many& descriptor)
+Bond::Bond(World* producer, const Many& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
@@ -22,12 +22,12 @@ Constraint::Constraint(World* producer, const Many& descriptor)
    VERBOSE_PHYSICS("Initialized");
 }
 
-/// Refresh the world component on environment change                         
-void Constraint::Refresh() {
+/// Refresh the component on environment change                               
+void Bond::Refresh() {
 
 }
 
-/// Update the window                                                         
-void Constraint::Update(Real) {
+/// Update the component                                                      
+void Bond::Update(Real) {
 
 }

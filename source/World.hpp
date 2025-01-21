@@ -8,7 +8,7 @@
 #pragma once
 #include "Instance.hpp"
 #include "Particles.hpp"
-#include "Constraint.hpp"
+#include "Bond.hpp"
 #include "Field.hpp"
 #include <Flow/Verbs/Create.hpp>
 
@@ -35,7 +35,7 @@ private:
    // Forces that act upon specific instances                           
    // Can be used to compose complex multi-instance/entity objects,     
    // whose parts have different behaviors like ragdolls and structures 
-   TFactory<Constraint> mConstraints;
+   TFactory<Bond> mBonds;
    // Heat, fluid, electromagnetic, whatever - fields describe          
    // behavior over a volume, affecting particles and instances         
    TFactory<Field> mFields;

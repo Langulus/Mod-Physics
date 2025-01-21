@@ -16,7 +16,23 @@ CATCH_TRANSLATE_EXCEPTION(::Langulus::Exception const& ex) {
    return ::std::string {Token {serialized}};
 }
 
-SCENARIO("Window creation", "[window]") {
+template<class T>
+void CreationTest(Thing& parent) {
+   auto instance = parent.template CreateUnit<T>();
+   REQUIRE(instance.GetCount() == 1);
+   REQUIRE(instance.IsSparse());
+   REQUIRE(instance.template CastsTo<T>());
+}
+
+template<class T>
+void CreationTestToken(Thing& parent, Token token) {
+   auto instance = parent.CreateUnitToken(token);
+   REQUIRE(instance.GetCount() == 1);
+   REQUIRE(instance.IsSparse());
+   REQUIRE(instance.CastsTo<T>());
+}
+
+SCENARIO("Physics creation", "[physics]") {
    static Allocator::State memoryState;
 
    for (int repeat = 0; repeat != 10; ++repeat) {
@@ -25,37 +41,26 @@ SCENARIO("Window creation", "[window]") {
          auto root = Thing::Root<false>("Physics");
          
          WHEN("The instance is created via abstraction") {
-            auto world = root.CreateUnit<A::World>();
-            auto instance = root.CreateUnit<A::Instance>();
+            CreationTest<A::World>(root);
+            CreationTest<A::Instance>(root);
+            CreationTest<A::Bond>(root);
+            CreationTest<A::Field>(root);
+            CreationTest<A::Particles>(root);
+
             root.DumpHierarchy();
-
-            REQUIRE(world.GetCount() == 1);
-            REQUIRE(world.IsSparse());
-            REQUIRE(world.CastsTo<A::World>());
-
-            REQUIRE(instance.GetCount() == 1);
-            REQUIRE(instance.IsSparse());
-            REQUIRE(instance.CastsTo<A::Instance>());
-
-            REQUIRE(root.GetUnits().GetCount() == 2);
+            REQUIRE(root.GetUnits().GetCount() == 5);
          }
 
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
          WHEN("The instance is created via token") {
-            auto world = root.CreateUnitToken("A::World");
-            auto instance = root.CreateUnitToken("A::Instance");
+            CreationTestToken<A::World>(root, "A::World");
+            CreationTestToken<A::Instance>(root, "A::Instance");
+            CreationTestToken<A::Bond>(root, "A::Bond");
+            CreationTestToken<A::Field>(root, "A::Field");
+            CreationTestToken<A::Particles>(root, "A::Particles");
 
             root.DumpHierarchy();
-
-            REQUIRE(world.GetCount() == 1);
-            REQUIRE(world.IsSparse());
-            REQUIRE(world.CastsTo<A::World>());
-               
-            REQUIRE(instance.GetCount() == 1);
-            REQUIRE(instance.IsSparse());
-            REQUIRE(instance.CastsTo<A::Instance>());
-
-            REQUIRE(root.GetUnits().GetCount() == 2);
+            REQUIRE(root.GetUnits().GetCount() == 5);
          }
       #endif
 

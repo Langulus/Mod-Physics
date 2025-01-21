@@ -11,17 +11,21 @@
 
 
 ///                                                                           
-///   Constraint                                                              
+///   Bond                                                                    
 ///                                                                           
-/// Connects instances, allowing them to share energy                         
+///   A connection between instances, that allows for transfer of energy.     
+/// Can be used to compose complex multi-instance/entity objects,             
+/// whose parts have different behaviors like ragdolls and structures.        
+///   Can emerge from simulation on collision, when some electromagnetic or   
+/// chemical interaction forms a strong bond.                                 
 ///                                                                           
-struct Euclidean::Constraint : A::Physical, ProducedFrom<World> {
+struct Euclidean::Bond : A::Bond, ProducedFrom<World> {
    LANGULUS(ABSTRACT) false;
    LANGULUS(PRODUCER) World;
-   LANGULUS_BASES(A::Physical);
+   LANGULUS_BASES(A::Bond);
 
 public:
-   Constraint(World*, const Many&);
+   Bond(World*, const Many&);
 
    void Update(Real);
    void Refresh() override;

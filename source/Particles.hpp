@@ -14,8 +14,10 @@
 ///                                                                           
 /// Manages particle emitters, colliders and state transitions                
 ///                                                                           
-struct Euclidean::Particles : Instance {
-   LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
+struct Euclidean::Particles : A::Particles, Instance {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS(PRODUCER) World;
+   LANGULUS_BASES(A::Particles /*Instance base intentionally obscured*/);
 
 public:
    Particles(World*, const Many&);

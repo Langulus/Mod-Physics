@@ -30,7 +30,7 @@ World::World(Physics* producer, const Many& descriptor)
 void World::Teardown() {
    mFields.Teardown();
    mInstances.Teardown();
-   mConstraints.Teardown();
+   mBonds.Teardown();
    mParticles.Teardown();
 }
 
@@ -57,8 +57,8 @@ void World::Update() {
       field.Update(timeAsReal);
    for (auto& instance : mInstances)
       instance.Update(timeAsReal);
-   for (auto& constraint : mConstraints)
-      constraint.Update(timeAsReal);
+   for (auto& bonds : mBonds)
+      bonds.Update(timeAsReal);
    for (auto& particle : mParticles)
       particle.Update(timeAsReal);
 
@@ -70,6 +70,6 @@ void World::Update() {
 void World::Create(Verb& verb) {
    mInstances.Create(this, verb);
    mParticles.Create(this, verb);
-   mConstraints.Create(this, verb);
+   mBonds.Create(this, verb);
    mFields.Create(this, verb);
 }

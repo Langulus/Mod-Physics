@@ -14,8 +14,10 @@
 ///                                                                           
 /// Affects instances over a volume                                           
 ///                                                                           
-struct Euclidean::Field : Instance {
-   LANGULUS_BASES(A::Physical /*Instance bases intentionally obscured*/);
+struct Euclidean::Field : A::Field, Instance {
+   LANGULUS(ABSTRACT) false;
+   LANGULUS(PRODUCER) World;
+   LANGULUS_BASES(A::Field /*Instance base intentionally obscured*/);
 
 public:
    Field(World*, const Many&);

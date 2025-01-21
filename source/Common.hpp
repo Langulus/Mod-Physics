@@ -19,13 +19,13 @@ namespace Euclidean
    struct World;
    struct Particles;
    struct Instance;
-   struct Constraint;
+   struct Bond;
    struct Field;
 }
 
 #if 1
-   #define VERBOSE_PHYSICS(...)      Logger::Verbose(Self(), __VA_ARGS__)
-   #define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::VerboseTab(Self(), __VA_ARGS__)
+   #define VERBOSE_PHYSICS(...)      Logger::Info(Self(), __VA_ARGS__)
+   #define VERBOSE_PHYSICS_TAB(...)  const auto tab = Logger::InfoTab(Self(), __VA_ARGS__)
 #else
    #define VERBOSE_PHYSICS(...)      LANGULUS(NOOP)
    #define VERBOSE_PHYSICS_TAB(...)  LANGULUS(NOOP)
