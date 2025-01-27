@@ -66,6 +66,8 @@ SCENARIO("Physics creation", "[physics]") {
 
          // Check for memory leaks after each cycle                     
          REQUIRE(memoryState.Assert());
+
+         root.Reference(-1);
       }
    }
 }

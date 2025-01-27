@@ -40,6 +40,25 @@ private:
    // behavior over a volume, affecting particles and instances         
    TFactory<Field> mFields;
 
+
+   // Lowest world volume limit. Zeroes mean that the smallest unit     
+   // is down to Level::Min and the floating point accuracy. Higher     
+   // values define the smallest possible unit of space, essentially    
+   // turning the world into an adaptive volume down to this size.      
+   // Providing the same components as mLimit will reduce the dimensions
+   // of the world. For example:                                        
+   //    mPlanck{1,500,1} and mLimit{1000,500,1000}                     
+   // means that a 2D world along XZ plane will begin as a cell of size 
+   // 1000x1000 and refine down to a resolution of 1x1 as the simulation
+   // advances.                                                         
+   Adaptive<Vec3> mPlanck;
+
+   // Higher world limit. Zero means that the world extends towards     
+   // Level::Max and the range of the floating point number in use. If  
+   // non-zero, then there's a limit imposed on the world. This is the  
+   // volume of the initial adaptive grid.                              
+   Adaptive<Vec3> mLimit;
+
 public:
    World(Physics*, const Many&);
 
