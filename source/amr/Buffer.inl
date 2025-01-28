@@ -11,8 +11,9 @@ namespace AMR
    /// Will allocate memory for D-dimensional buffer of a given size          
    ///   @param size - the size of the buffer along each dimension            
    TPL()
-   Buffer<T, D>::Buffer(const Vu64& size) : mSize {size} {
-      LANGULUS_ASSUME(DevAssumes, mSize[0] != 0, "Bad buffer size");
+   Buffer<T, D>::Buffer(const Vu64& size)
+      : mSize {size} {
+      LANGULUS_ASSERT(mSize[0] != 0, Construct, "Bad buffer size");
       auto bufferSize = mSize[0];
 
       for (size_t i = 1; i < D; ++i) {

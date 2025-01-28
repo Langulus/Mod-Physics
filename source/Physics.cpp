@@ -6,12 +6,11 @@
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
 #include "Physics.hpp"
-
-#include <Math/Normal.hpp>
-#include <Math/Primitives.hpp>
-#include <Math/Angle.hpp>
-#include <Math/SimplexNoise.hpp>
-#include <Math/Config.hpp>
+#include <Langulus/Math/Normal.hpp>
+#include <Langulus/Math/Primitives.hpp>
+#include <Langulus/Math/Angle.hpp>
+#include <Langulus/Math/SimplexNoise.hpp>
+#include <Langulus/Math/Config.hpp>
 
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",
