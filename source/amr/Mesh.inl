@@ -383,7 +383,7 @@ namespace AMR
    template<Config C>
    void RefinePlan<C>::propagateUp(const Vu64& index, u32 currentLevel) {
       // TODO: set propagate
-      ASSERT(propagate);
+      LANGULUS_ASSUME(DevAssumes, propagate, "Propagation should be true");
       u64 offset = 1 << (level - currentLevel - 1);
       position = index * offset;
    }
@@ -422,7 +422,7 @@ namespace AMR
             merged.propagate = true;
       }
 
-      ASSERT(diffCoord != -1);
+      LANGULUS_ASSUME(DevAssumes, diffCoord != -1, "Invalid difference");
 
       auto nodesBuffer = Ref<Buffer<Node*, Dimension>>::New(merged.size);
       Vu64 pos1 = 0;
