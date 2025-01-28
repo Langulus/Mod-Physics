@@ -17,7 +17,7 @@ namespace AMR
       auto bufferSize = mSize[0];
 
       for (size_t i = 1; i < D; ++i) {
-         LANGULUS_ASSUME(DevAssumes, mSize[i] != 0, "Bad buffer size");
+         LANGULUS_ASSERT(mSize[i] != 0, Construct, "Bad buffer size");
          mStride[i - 1] = bufferSize;
          bufferSize *= mSize[i];
       }
