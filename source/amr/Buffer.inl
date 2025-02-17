@@ -14,12 +14,12 @@ namespace AMR
    Buffer<T, D>::Buffer(const Vu64& size)
       : mSize {size} {
       LANGULUS_ASSERT(mSize[0] != 0, Construct, "Bad buffer size");
-      auto bufferSize = mSize[0];
+      Offset bufferSize = static_cast<Offset>(mSize[0]);
 
       for (size_t i = 1; i < D; ++i) {
          LANGULUS_ASSERT(mSize[i] != 0, Construct, "Bad buffer size");
          mStride[i - 1] = bufferSize;
-         bufferSize *= mSize[i];
+         bufferSize *= static_cast<Offset>(mSize[i]);
       }
 
       mData = new T[bufferSize];
@@ -30,7 +30,7 @@ namespace AMR
    ///   @param position - the D-dimensional starting position of array       
    ///   @param size - the D-dimensional size of the array                    
    TPL()
-   Array<T, D>::Array(const Ref<Buffer>& buffer, const Vu64& position, const Vu64& size)
+   Array<T, D>::Array(const Ref<Buffer<T, D>>& buffer, const Vu64& position, const Vu64& size)
       : mBuffer   {buffer}
       , mPosition {position}
       , mSize     {size}
@@ -44,7 +44,7 @@ namespace AMR
    /// Create both a buffer and an array interface for it with single call    
    ///   @param size - the size of the buffer and array                       
    TME()::createWithBuffer(const Vu64& size) -> Array {
-      return {Ref<Buffer>{}.New(size), 0, size};
+      return {Ref<Buffer<T, D>>{}.New(size), 0, size};
    }
 
    /// Get the T at the given D-dimensional array coordinates                 

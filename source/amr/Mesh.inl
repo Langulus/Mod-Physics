@@ -149,7 +149,7 @@ namespace AMR
    }
 
    template<Config C>
-   RefinePlan<C>::RefinePlan(Node* node)
+   RefinePlan<C>::RefinePlan(Node<C>* node)
       : level(node->level)
       , size(1)
       , nodes(NodeArray::createWithBuffer(size)) {
@@ -376,7 +376,7 @@ namespace AMR
    }
 
    template<Config C>
-   DataView<C>::DataView(Node& node, Vu64 base)
+   DataView<C>::DataView(Node<C>& node, Vu64 base)
       : node(node)
       , base(base) {}
 
@@ -424,7 +424,7 @@ namespace AMR
 
       LANGULUS_ASSUME(DevAssumes, diffCoord != -1, "Invalid difference");
 
-      auto nodesBuffer = Ref<Buffer<Node*, Dimension>>::New(merged.size);
+      auto nodesBuffer = Ref<Buffer<Node<C>*, Dimension>>::New(merged.size);
       Vu64 pos1 = 0;
       Vu64 pos2 = 0;
       for (u8 i = 0; i < Dimension; ++i) {
@@ -452,8 +452,8 @@ namespace AMR
    }
 
    template<Config C>
-   Tree<C>::Tree(Mesh* mesh, Vu64 selfPosition)
-      : root(new Node)
+   Tree<C>::Tree(Mesh<C>* mesh, Vu64 selfPosition)
+      : root(new Node<C>)
       , mesh(mesh)
       , selfPosition(selfPosition) {}
 

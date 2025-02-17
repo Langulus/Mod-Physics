@@ -77,7 +77,6 @@ namespace AMR
       using Arrays     = typename C::Arrays;
       using Buffers    = typename C::Buffers;
       using Vu64       = typename C::Vu64;
-      using RefinePlan = RefinePlan<C>;
       using NodeArray  = Array<Node*, Dimension>;
 
       bool isLeaf = true;
@@ -87,7 +86,7 @@ namespace AMR
       Action action = Action::None;
       u32 level = 0;
       Vu64 index = 0;
-      std::vector<RefinePlan*> refinePlan;
+      std::vector<RefinePlan<C>*> refinePlan;
       NodeArray adjacent;
       bool sync = false;
       bool propagate = false;
@@ -140,17 +139,16 @@ namespace AMR
    template<Config C>
    struct DataView {
       static constexpr auto Dimension = C::Dimension;
-      using Node = Node<C>;
       using Vi64 = typename C::Vi64;
       using Vu64 = typename C::Vu64;
 
-      Node& node;
+      Node<C>& node;
       Vu64  base;
       bool  refine = false;
       bool  derefine = false;
 
    public:
-      DataView(Node&, Vu64 base);
+      DataView(Node<C>&, Vu64 base);
 
       ~DataView() {
          if (refine)
@@ -170,9 +168,8 @@ namespace AMR
    template<Config C>
    struct RefinePlan {
       static constexpr auto Dimension = C::Dimension;
-      using Node = Node<C>;
       using Vu64 = typename C::Vu64;
-      using NodeArray = Array<Node*, Dimension>;
+      using NodeArray = Array<Node<C>*, Dimension>;
 
       u32  level = 0;
       Vu64 position = 0;
@@ -181,7 +178,7 @@ namespace AMR
       bool propagate = true;
 
    public:
-      RefinePlan(Node*);
+      RefinePlan(Node<C>*);
       RefinePlan();
 
       void propagateUp(const Vu64& index, u32 currentLevel);
@@ -203,18 +200,16 @@ namespace AMR
    template<Config C>
    struct Tree {
       static constexpr auto Dimension = C::Dimension;
-      using Mesh = Mesh<C>;
-      using Node = Node<C>;
       using Vu64 = typename C::Vu64;
 
-      Mesh* mesh;
+      Mesh<C>* mesh;
       Vu64  selfPosition;
-      Node* root;
+      Node<C>* root;
 
    public:
       Tree(const Tree&) = delete;
       Tree(Tree&&) = delete;
-      Tree(Mesh*, Vu64 selfPosition);
+      Tree(Mesh<C>*, Vu64 selfPosition);
 
       Tree& operator = (const Tree&) = delete;
       Tree& operator = (Tree&&) = delete;
@@ -227,7 +222,6 @@ namespace AMR
    template<Config C>
    struct Mesh {
       static constexpr auto Dimension = C::Dimension;
-      using Tree = Tree<C>;
       using Vu64 = typename C::Vu64;
 
       //Array<Tree, Dimension> trees; TODO missing constructor

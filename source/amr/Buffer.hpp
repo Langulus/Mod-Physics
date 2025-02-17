@@ -39,10 +39,9 @@ namespace AMR
       LANGULUS(TYPED) T;
       using Vu64 = TVector<u64, D>;
       using Vi64 = TVector<i64, D>;
-      using Buffer = Buffer<T, D>;
 
       // The buffer we're interfacing                                   
-      Ref<Buffer> mBuffer;
+      Ref<Buffer<T, D>> mBuffer;
       // Starting position into the buffer                              
       Vu64 mPosition;
       // Size of the interfaced region                                  
@@ -52,7 +51,7 @@ namespace AMR
 
       Array(const Array&) = default;
       Array(Array&&) = default;
-      Array(const Ref<Buffer>&, const Vu64& position, const Vu64& size);
+      Array(const Ref<Buffer<T, D>>&, const Vu64& position, const Vu64& size);
 
       Array& operator = (const Array&) = default;
       Array& operator = (Array&&) = default;
