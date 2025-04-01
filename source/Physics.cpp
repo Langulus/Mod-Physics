@@ -11,6 +11,7 @@
 #include <Langulus/Math/Angle.hpp>
 #include <Langulus/Math/SimplexNoise.hpp>
 #include <Langulus/Math/Config.hpp>
+#include <Langulus/Profiler.hpp>
 
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",
@@ -44,6 +45,7 @@ void Physics::Teardown() {
 /// Module update routine                                                     
 ///   @param dt - time from last update                                       
 bool Physics::Update(Time) {
+   LANGULUS(PROFILE);
    for (auto& world : mWorlds)
       world.Update();
    return true;
