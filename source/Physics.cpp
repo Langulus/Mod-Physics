@@ -11,7 +11,6 @@
 #include <Langulus/Math/Angle.hpp>
 #include <Langulus/Math/SimplexNoise.hpp>
 #include <Langulus/Math/Config.hpp>
-#include <Langulus/Profiler.hpp>
 
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",
