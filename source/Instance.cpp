@@ -31,6 +31,7 @@ Instance::Instance(World* producer, const Many& descriptor)
    SeekValueAux<Traits::Velocity    >(descriptor, mData.mVelocity    );
    SeekValueAux<Traits::Static      >(descriptor, mData.mStatic      );
    SeekValueAux(descriptor, mColor);
+   mData.mAim.w = 1;
    VERBOSE_PHYSICS("Initialized");
 }
 
