@@ -14,7 +14,7 @@ file(GLOB_RECURSE
 # Build the module                                                              
 add_langulus_mod(LangulusModPhysics ${LANGULUS_MOD_PHYSICS_SOURCES})
 
-if(LANGULUS_TESTING)
+if(LANGULUS_OPTION_TESTING)
 	enable_testing()
 	add_subdirectory(test)
 endif()
