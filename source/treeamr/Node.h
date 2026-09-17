@@ -313,7 +313,7 @@ private:
 
    /// Pass all Point pointers to the parents Node                            
    void depopulate_node() {
-      LANGULUS_ASSUME(DevAssumes, parent, "Shouldn't depopulate the root node");
+      LglsAssumeDev(parent, "Shouldn't depopulate the root node");
       for (auto& p : local_points)
          parent->add(p);
    }
@@ -372,7 +372,7 @@ private:
    /// Inserts Point into the Parent Node                                     
    ///   @param T_ptr - pointer pointer to be added to the parent Node        
    void percolate_to_parent(T* T_ptr) {
-      LANGULUS_ASSUME(DevAssumes, parent, "Shouldn't percolate in root node");
+      LglsAssumeDev(parent, "Shouldn't percolate in root node");
       parent->add(T_ptr);
    }
 };

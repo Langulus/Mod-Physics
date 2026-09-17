@@ -8,7 +8,7 @@ namespace AMR
    /// A non-copyable and non-movable D-dimensional buffer                    
    ///   @tparam T - the type of contained data                               
    ///   @tparam D - the number of dimensions                                 
-   template<CT::Data T, u8 D>
+   template<CT::NotVoid T, u8 D>
    struct Buffer {
       LANGULUS(TYPED) T;
       static_assert(D > 0, "D must be a positive integer");
@@ -34,7 +34,7 @@ namespace AMR
    /// interfaces a part of a buffer???
    ///   @tparam T - the type of contained data                               
    ///   @tparam D - the number of dimensions                                 
-   template<CT::Data T, u8 D>
+   template<CT::NotVoid T, u8 D>
    struct Array {
       LANGULUS(TYPED) T;
       using Vu64 = TVector<u64, D>;

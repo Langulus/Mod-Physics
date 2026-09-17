@@ -1,6 +1,6 @@
 #include "Buffer.hpp"
 
-#define TPL() template<CT::Data T, u8 D>
+#define TPL() template<CT::NotVoid T, u8 D>
 #define TME() TPL() auto Array<T, D>
 
 

@@ -47,7 +47,7 @@ namespace AMR
    /// Upsample grids in all dimensions                                       
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::upsampleGrid() {
-      LANGULUS_ASSUME(DevAssumes, not isLeaf, "Node is a leaf node");
+      LglsAssumeDev(not isLeaf, "Node is a leaf node");
       Loop<Dimension>(0, 2, [&](const auto& it1) {
          Loop<Dimension>(0, C::BlockSize / 2, [&](const auto& it2) {
             const auto src = it2 + C::BlockSize / 2 * it1;
@@ -69,7 +69,7 @@ namespace AMR
 
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::upsampleGridRange(const Vu64& fromSrc, const Vu64& toSrc, const Vu64& toDst, Node* child) {
-      LANGULUS_ASSUME(DevAssumes, not isLeaf, "Node is a leaf node");
+      LglsAssumeDev(not isLeaf, "Node is a leaf node");
       Loop<Dimension>(fromSrc, toSrc, [&](const auto& it) {
          const auto dst = toDst + (it - fromSrc) * 2;
          G::upsample(
@@ -89,7 +89,7 @@ namespace AMR
 
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::downsampleGrid() {
-      LANGULUS_ASSUME(DevAssumes, not isLeaf, "Node is a leaf node");
+      LglsAssumeDev(not isLeaf, "Node is a leaf node");
       Loop<Dimension>(0, 2, [&](const auto& it1) {
          Loop<Dimension>(0, C::BlockSize / 2, [&](const auto& it2) {
             const auto dst = it2 + C::BlockSize / 2 * it1;
@@ -215,7 +215,7 @@ namespace AMR
 
    template<Config C>
    void Node<C>::split(const Buffers::Tuple& buffers, const Vu64& position) {
-      LANGULUS_ASSUME(DevAssumes, isLeaf, "Node isn't a leaf node");
+      LglsAssumeDev(isLeaf, "Node isn't a leaf node");
 
       Loop<Dimension>(0, 2, [&](const auto& it) {
          auto childPosition = position + it * C::BlockSize;
@@ -228,12 +228,12 @@ namespace AMR
 
    template<Config C>
    void Node<C>::merge() {
-      LANGULUS_ASSUME(DevAssumes, not isLeaf, "Node is a leaf node");
+      LglsAssumeDev(not isLeaf, "Node is a leaf node");
 
       downsampleAll();
 
       Loop<Dimension>(0, 2, [&](const auto& it) {
-         LANGULUS_ASSUME(DevAssumes, children[it]->isLeaf, "Child isn't is a leaf node");
+         LglsAssumeDev(children[it]->isLeaf, "Child isn't is a leaf node");
          delete children[it];
          children[it] = nullptr;
       });
@@ -383,7 +383,7 @@ namespace AMR
    template<Config C>
    void RefinePlan<C>::propagateUp(const Vu64& index, u32 currentLevel) {
       // TODO: set propagate
-      LANGULUS_ASSUME(DevAssumes, propagate, "Propagation should be true");
+      LglsAssumeDev(propagate, "Propagation should be true");
       u64 offset = 1 << (level - currentLevel - 1);
       position = index * offset;
    }
@@ -422,7 +422,7 @@ namespace AMR
             merged.propagate = true;
       }
 
-      LANGULUS_ASSUME(DevAssumes, diffCoord != -1, "Invalid difference");
+      LglsAssumeDev(diffCoord != -1, "Invalid difference");
 
       auto nodesBuffer = Ref<Buffer<Node<C>*, Dimension>>::New(merged.size);
       Vu64 pos1 = 0;
