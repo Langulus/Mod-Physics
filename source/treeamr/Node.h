@@ -7,7 +7,7 @@
 /// the respective upper and lower local boundaries it is created with        
 template<class T, CT::Dimension...D>
 class Node {
-   static constexpr Count Dimensions   = sizeof...(D);
+   static constexpr size_t Dimensions   = sizeof...(D);
    static constexpr auto  BranchFactor = AMR::branch_factor(Dimensions);
    static_assert(Dimensions > 0, "Dimensions should be greater than zero");
    using Vector = TVector<Real, Dimensions>;
@@ -22,7 +22,7 @@ class Node {
 
 public:
    // Max number of points allowed to be held by a Node before split    
-   static constexpr Count MAX_POINTS_ALLOWED = 8;
+   static constexpr size_t MAX_POINTS_ALLOWED = 8;
    // Min number of points allowed to be held by a Node before merge    
    static constexpr size_t MIN_POINTS_ALLOWED = 3;
 

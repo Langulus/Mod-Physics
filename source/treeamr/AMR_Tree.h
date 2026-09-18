@@ -9,7 +9,7 @@
 template<class T, CT::Dimension...D>
 class AMR_Tree : public Node<T, D...> {
 protected:
-   static constexpr Count Dimensions = sizeof...(D);
+   static constexpr size_t Dimensions = sizeof...(D);
    static_assert(Dimensions > 0, "Dimensions should be greater than zero");
    using Vector = TVector<Real, Dimensions>;
    using Root   = Node<T, D...>;

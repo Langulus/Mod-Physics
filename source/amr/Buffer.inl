@@ -14,12 +14,12 @@ namespace AMR
    Buffer<T, D>::Buffer(const Vu64& size)
       : mSize {size} {
       LANGULUS_ASSERT(mSize[0] != 0, Construct, "Bad buffer size");
-      Offset bufferSize = static_cast<Offset>(mSize[0]);
+      size_t bufferSize = static_cast<size_t>(mSize[0]);
 
       for (size_t i = 1; i < D; ++i) {
          LANGULUS_ASSERT(mSize[i] != 0, Construct, "Bad buffer size");
          mStride[i - 1] = bufferSize;
-         bufferSize *= static_cast<Offset>(mSize[i]);
+         bufferSize *= static_cast<size_t>(mSize[i]);
       }
 
       mData = new T[bufferSize];
