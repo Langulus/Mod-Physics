@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// World construction                                                        
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
-Field::Field(World* producer, const Many& descriptor)
+Field::Field(World* producer, Many const& descriptor)
    : Resolvable {this}
    , Instance   {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");

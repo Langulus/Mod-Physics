@@ -16,7 +16,7 @@ using namespace Euclidean;
 /// World construction                                                        
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
-World::World(Physics* producer, const Many& descriptor)
+World::World(Physics* producer, Many const& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  

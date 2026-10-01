@@ -33,7 +33,7 @@ private:
    RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
 
 public:
-   Instance(World*, const Many&);
+   Instance(World*, Many const&);
 
    void Move(Verb&);
 

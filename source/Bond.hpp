@@ -25,7 +25,7 @@ struct Euclidean::Bond : A::Bond, ProducedFrom<World> {
    LANGULUS_BASES(A::Bond);
 
 public:
-   Bond(World*, const Many&);
+   Bond(World*, Many const&);
 
    void Update(Real);
    void Refresh() override;

@@ -20,7 +20,7 @@ struct Euclidean::Particles : A::Particles, Instance {
    LANGULUS_BASES(A::Particles /*Instance base intentionally obscured*/);
 
 public:
-   Particles(World*, const Many&);
+   Particles(World*, Many const&);
 
    void Update(Real);
    void Refresh() override;

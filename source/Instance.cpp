@@ -15,7 +15,7 @@ using namespace Euclidean;
 /// Instance construction                                                     
 ///   @param producer - the world that owns the instance                      
 ///   @param descriptor - instance descriptor                                 
-Instance::Instance(World* producer, const Many& descriptor)
+Instance::Instance(World* producer, Many const& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
@@ -74,7 +74,7 @@ void Instance::Teardown() {
 
 /// Refresh the instance's properties on environment change                   
 void Instance::Refresh() {
-   mDomain = SeekUnit<A::Mesh>();
+   mDomain = SeekPart<A::Mesh>();
 }
 
 /// Move, rotate, resize verb                                                 

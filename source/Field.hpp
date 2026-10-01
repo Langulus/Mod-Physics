@@ -20,7 +20,7 @@ struct Euclidean::Field : A::Field, Instance {
    LANGULUS_BASES(A::Field /*Instance base intentionally obscured*/);
 
 public:
-   Field(World*, const Many&);
+   Field(World*, Many const&);
 
    void Update(Real);
    void Refresh() override;

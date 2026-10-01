@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// Bond construction                                                         
 ///   @param producer - the worlds that ouns the constraint                   
 ///   @param descriptor - constraint descriptor                               
-Bond::Bond(World* producer, const Many& descriptor)
+Bond::Bond(World* producer, Many const& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
