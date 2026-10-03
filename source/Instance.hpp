@@ -6,7 +6,7 @@
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
 #pragma once
-#include "Common.hpp"
+#include "Export.hpp"
 #include <Langulus/Flow/Factory.hpp>
 #include <Langulus/Math/Instance.hpp>
 #include <Langulus/Mesh.hpp>
@@ -16,21 +16,22 @@
 ///                                                                           
 ///   An Euclidean instance                                                   
 ///                                                                           
-/// Manages particles, instances, fields, constraints                         
+/// Manages position and orientation of particles, instances, fields,         
+/// constraints, and anything that can be instantiated in space.              
 ///                                                                           
-struct Euclidean::Instance : A::Instance, ProducedFrom<World> {
-   LANGULUS(ABSTRACT) false;
-   LANGULUS(PRODUCER) World;
-   LANGULUS_BASES(A::Instance);
-   LANGULUS_VERBS(Verbs::Move);
+struct Euclidean::Instance : Things::Instance, ProducedFrom<Euclidean::World> {
+   using CTTI_Abstract  = No;
+   using CTTI_Producer  = Euclidean::World;
+   using CTTI_Bases     = Things::Instance;
+   using CTTI_Ability   = Verbs::Move;
 
 private:
    // Collision domain                                                  
-   Pin<Ref<A::Mesh>> mDomain;
+   Pin<Ref<Things::Mesh>> mDomain;
    // Instance data                                                     
    Math::TInstance<Vec3> mData;
    // Instance color                                                    
-   RTTI::Tag<Pin<RGBA>, Traits::Color> mColor = Colors::White;
+   Pin<RGBA, Tags::Color> mColor = Colors::White;
 
 public:
    Instance(World*, Many const&);
