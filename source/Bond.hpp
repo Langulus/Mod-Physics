@@ -6,8 +6,8 @@
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
 #pragma once
-#include "Common.hpp"
-#include <Langulus/Flow/Producible.hpp>
+#include "Export.hpp"
+#include <Langulus/Producible.hpp>
 
 
 ///                                                                           
@@ -19,9 +19,8 @@
 ///   Can emerge from simulation on collision, when some electromagnetic or   
 /// chemical interaction forms a strong bond.                                 
 ///                                                                           
-struct Euclidean::Bond : A::Bond, ProducedFrom<World> {
+struct Euclidean::Bond : Things::Bond, ProducedFrom<Euclidean::World> {
    LANGULUS(ABSTRACT) false;
-   LANGULUS(PRODUCER) World;
    LANGULUS_BASES(A::Bond);
 
 public:
