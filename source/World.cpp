@@ -7,7 +7,7 @@
 ///                                                                           
 #include "World.hpp"
 #include "Physics.hpp"
-#include <Langulus/Flow/Time.hpp>
+#include <Langulus/Time.hpp>
 #include <Langulus/Math/Gradient.hpp>
 
 using namespace Euclidean;

@@ -15,8 +15,8 @@
 /// Manages particle emitters, colliders and state transitions                
 ///                                                                           
 struct Euclidean::Particles : A::Particles, Instance {
-   LANGULUS(ABSTRACT) false;
-   LANGULUS(PRODUCER) World;
+   using CTTI_Abstract = No;
+   using CTTI_Producer = World;
    LANGULUS_BASES(A::Particles /*Instance base intentionally obscured*/);
 
 public:

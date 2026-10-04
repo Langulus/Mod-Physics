@@ -15,8 +15,8 @@
 /// Affects instances over a volume                                           
 ///                                                                           
 struct Euclidean::Field : A::Field, Instance {
-   LANGULUS(ABSTRACT) false;
-   LANGULUS(PRODUCER) World;
+   using CTTI_Abstract = No;
+   using CTTI_Producer = World;
    LANGULUS_BASES(A::Field /*Instance base intentionally obscured*/);
 
 public:

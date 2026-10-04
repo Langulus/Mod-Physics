@@ -7,10 +7,10 @@
 ///                                                                           
 #include "Physics.hpp"
 #include <Langulus/Math/Normal.hpp>
-#include <Langulus/Math/Primitives.hpp>
+#include <Langulus/Math/Primitive.hpp>
 #include <Langulus/Math/Angle.hpp>
 #include <Langulus/Math/SimplexNoise.hpp>
-#include <Langulus/Math/Config.hpp>
+#include <Langulus/Math/Export.hpp>
 
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",

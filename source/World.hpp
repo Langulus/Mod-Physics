@@ -19,8 +19,8 @@
 /// Manages particles, instances, fields, constraints                         
 ///                                                                           
 struct Euclidean::World final : A::World, ProducedFrom<Physics> {
-   LANGULUS(ABSTRACT) false;
-   LANGULUS(PRODUCER) Physics;
+   using CTTI_Abstract = No;
+   using CTTI_Producer = Physics;
    LANGULUS_BASES(A::World);
    LANGULUS_VERBS(Verbs::Create);
 

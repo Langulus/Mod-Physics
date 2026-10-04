@@ -20,7 +20,7 @@
 /// chemical interaction forms a strong bond.                                 
 ///                                                                           
 struct Euclidean::Bond : Things::Bond, ProducedFrom<Euclidean::World> {
-   LANGULUS(ABSTRACT) false;
+   using CTTI_Abstract = No;
    LANGULUS_BASES(A::Bond);
 
 public:

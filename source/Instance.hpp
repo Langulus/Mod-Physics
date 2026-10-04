@@ -7,10 +7,10 @@
 ///                                                                           
 #pragma once
 #include "Export.hpp"
-#include <Langulus/Flow/Factory.hpp>
+#include <Langulus/Factory.hpp>
 #include <Langulus/Math/Instance.hpp>
-#include <Langulus/Mesh.hpp>
-#include <Langulus/Math/Color.hpp>
+#include <Langulus/CppAPI/Mesh.hpp>
+#include <Langulus/Color.hpp>
 
 
 ///                                                                           

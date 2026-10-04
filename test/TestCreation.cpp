@@ -5,7 +5,7 @@
 ///                                                                           
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
-#include <Langulus/Physical.hpp>
+#include <Langulus/CppAPI/Physical.hpp>
 #include <Langulus/Testing.hpp>
 
 
@@ -35,7 +35,7 @@ SCENARIO("Physics creation", "[physics]") {
          
          WHEN("The instance is created via abstraction") {
             CreationTest<A::World>(root);
-            CreationTest<A::Instance>(root);
+            CreationTest<Things::Instance>(root);
             CreationTest<A::Bond>(root);
             CreationTest<A::Field>(root);
             CreationTest<A::Particles>(root);
@@ -47,7 +47,7 @@ SCENARIO("Physics creation", "[physics]") {
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
          WHEN("The instance is created via token") {
             CreationTestToken<A::World>(root, "A::World");
-            CreationTestToken<A::Instance>(root, "A::Instance");
+            CreationTestToken<Things::Instance>(root, "Things::Instance");
             CreationTestToken<A::Bond>(root, "A::Bond");
             CreationTestToken<A::Field>(root, "A::Field");
             CreationTestToken<A::Particles>(root, "A::Particles");

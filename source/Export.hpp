@@ -6,7 +6,7 @@
 /// SPDX-License-Identifier: GPL-3.0-or-later                                 
 ///                                                                           
 #pragma once
-#include <Langulus/Physical.hpp>
+#include <Langulus/CppAPI/Physical.hpp>
 
 using namespace Langulus;
 using namespace Math;

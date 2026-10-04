@@ -7,7 +7,7 @@
 ///                                                                           
 #include "Instance.hpp"
 #include "Physics.hpp"
-#include <Langulus/Mesh.hpp>
+#include <Langulus/CppAPI/Mesh.hpp>
 
 using namespace Euclidean;
 
@@ -20,16 +20,16 @@ Instance::Instance(World* producer, Many const& descriptor)
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
-   SeekValueAux<Traits::Place       >(descriptor, mData.mPosition    );
-   SeekValueAux<Traits::Size        >(descriptor, mData.mScale       );
-   SeekValueAux<Traits::Aim         >(descriptor, mData.mAim         );
-   SeekValueAux<Traits::Level       >(descriptor, mData.mLevel       );
-   SeekValueAux<Traits::Acceleration>(descriptor, mData.mAcceleration);
-   SeekValueAux<Traits::Bilateral   >(descriptor, mData.mBilateral   );
-   SeekValueAux<Traits::Pickable    >(descriptor, mData.mPickable    );
-   SeekValueAux<Traits::Solid       >(descriptor, mData.mSolid       );
-   SeekValueAux<Traits::Velocity    >(descriptor, mData.mVelocity    );
-   SeekValueAux<Traits::Static      >(descriptor, mData.mStatic      );
+   SeekValueAux<Tags::Place       >(descriptor, mData.mPosition    );
+   SeekValueAux<Tags::Size        >(descriptor, mData.mScale       );
+   SeekValueAux<Tags::Aim         >(descriptor, mData.mAim         );
+   SeekValueAux<Tags::Level       >(descriptor, mData.mLevel       );
+   SeekValueAux<Tags::Acceleration>(descriptor, mData.mAcceleration);
+   SeekValueAux<Tags::Bilateral   >(descriptor, mData.mBilateral   );
+   SeekValueAux<Tags::Pickable    >(descriptor, mData.mPickable    );
+   SeekValueAux<Tags::Solid       >(descriptor, mData.mSolid       );
+   SeekValueAux<Tags::Velocity    >(descriptor, mData.mVelocity    );
+   SeekValueAux<Tags::Static      >(descriptor, mData.mStatic      );
    SeekValueAux(descriptor, mColor);
    mData.mAim.w = 1;
    VERBOSE_PHYSICS("Initialized");
@@ -74,7 +74,7 @@ void Instance::Teardown() {
 
 /// Refresh the instance's properties on environment change                   
 void Instance::Refresh() {
-   mDomain = SeekPart<A::Mesh>();
+   mDomain = SeekPart<Things::Mesh>();
 }
 
 /// Move, rotate, resize verb                                                 
