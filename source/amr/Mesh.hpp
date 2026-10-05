@@ -58,7 +58,7 @@ namespace AMR
    template<class T>
    struct GridConfig {
       static constexpr bool CTTI_GridConfigTag = true;
-      LANGULUS(TYPED) T;
+      using CTTI_Typed = T;
 
       static void upsample(auto src, auto dst) {
          static_assert(false, "You have to implement this");

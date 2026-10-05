@@ -10,7 +10,7 @@ namespace AMR
    ///   @tparam D - the number of dimensions                                 
    template<CT::NotVoid T, u8 D>
    struct Buffer {
-      LANGULUS(TYPED) T;
+      using CTTI_Typed = T;
       static_assert(D > 0, "D must be a positive integer");
       using Vu64  = TVector<u64, D>;
       using Vu64s = TVector<u64, (D > 1 ? D-1 : D)>;
@@ -36,7 +36,7 @@ namespace AMR
    ///   @tparam D - the number of dimensions                                 
    template<CT::NotVoid T, u8 D>
    struct Array {
-      LANGULUS(TYPED) T;
+      using CTTI_Typed = T;
       using Vu64 = TVector<u64, D>;
       using Vi64 = TVector<i64, D>;
 
