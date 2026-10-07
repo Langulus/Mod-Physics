@@ -67,7 +67,7 @@ namespace AMR
          const Vu64 mBase;
 
          template<class...XS>
-         auto operator()(i64 x1, XS...xs) const -> const T& {
+         auto operator()(i64 x1, XS...xs) const -> T const& {
             return mArray[mBase + Vi64 {x1, xs...}];
          }
 

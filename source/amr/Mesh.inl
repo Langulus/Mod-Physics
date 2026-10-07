@@ -27,7 +27,7 @@ namespace AMR
    Node<C>::Node(Node* parent, const Buffers::Tuple& buffers, const Vu64& position, const Vu64& index)
       : children(NodeArray::createWithBuffer(2))
       , parent(parent)
-      , data(mapTuple(buffers, [&]<class T>(const T& buffer) {
+      , data(mapTuple(buffers, [&]<class T>(T const& buffer) {
             return Array<TypeOf<TypeOf<T>>, Dimension>(buffer, position, C::BlockSize);
          }))
       , level(parent? parent->level + 1 : 0)
@@ -39,7 +39,7 @@ namespace AMR
    template<Config C>
    Node<C>::Node()
       : children(NodeArray::createWithBuffer(2))
-      , data(mapTuple(C::createBuffers(C::BlockSize), [&]<class T>(const T& buffer) {
+      , data(mapTuple(C::createBuffers(C::BlockSize), [&]<class T>(T const& buffer) {
             return Array<TypeOf<TypeOf<T>>, Dimension>(buffer, 0, C::BlockSize);
          }))
       , adjacent(NodeArray::createWithBuffer(3)) {}
