@@ -20,7 +20,7 @@ World::World(Physics* producer, Many const& descriptor)
    : Resolvable   {this}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
-   //SeekValueAux<Traits::Size>(descriptor, mSize);
+   //SeekValueAux<Tags::Size>(descriptor, mSize);
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
    VERBOSE_PHYSICS("Initialized");
@@ -37,7 +37,7 @@ void World::Teardown() {
 /// Refresh the world component on environment change                         
 void World::Refresh() {
    // Refresh unpinned properties from hierarchy                        
-   //SeekValue<Traits::Size>(mSize);
+   //SeekValue<Tags::Size>(mSize);
 }
 
 /// Update the window                                                         
