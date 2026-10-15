@@ -44,7 +44,7 @@ void Physics::Teardown() {
 /// Module update routine                                                     
 ///   @param dt - time from last update                                       
 bool Physics::Update(Time) {
-   LANGULUS(PROFILE);
+   LglsProfile();
    for (auto& world : mWorlds)
       world.Update();
    return true;

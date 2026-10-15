@@ -48,8 +48,8 @@ namespace AMR
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::upsampleGrid() {
       LglsAssumeDev(not isLeaf, "Node is a leaf node");
-      Loop<Dimension>(0, 2, [&](const auto& it1) {
-         Loop<Dimension>(0, C::BlockSize / 2, [&](const auto& it2) {
+      Loop<Dimension>(0, 2, [&](auto const& it1) {
+         Loop<Dimension>(0, C::BlockSize / 2, [&](auto const& it2) {
             const auto src = it2 + C::BlockSize / 2 * it1;
             const auto dst = 2ul * it2;
             G::upsample(
@@ -70,7 +70,7 @@ namespace AMR
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::upsampleGridRange(const Vu64& fromSrc, const Vu64& toSrc, const Vu64& toDst, Node* child) {
       LglsAssumeDev(not isLeaf, "Node is a leaf node");
-      Loop<Dimension>(fromSrc, toSrc, [&](const auto& it) {
+      Loop<Dimension>(fromSrc, toSrc, [&](auto const& it) {
          const auto dst = toDst + (it - fromSrc) * 2;
          G::upsample(
             std::get<I>(data).getter(it),
@@ -90,8 +90,8 @@ namespace AMR
    template<Config C> template<Grid G, Index64 I>
    void Node<C>::downsampleGrid() {
       LglsAssumeDev(not isLeaf, "Node is a leaf node");
-      Loop<Dimension>(0, 2, [&](const auto& it1) {
-         Loop<Dimension>(0, C::BlockSize / 2, [&](const auto& it2) {
+      Loop<Dimension>(0, 2, [&](auto const& it1) {
+         Loop<Dimension>(0, C::BlockSize / 2, [&](auto const& it2) {
             const auto dst = it2 + C::BlockSize / 2 * it1;
             const auto src = 2 * it2;
             G::downsample(
@@ -111,7 +111,7 @@ namespace AMR
 
    template<Config C>
    void Node<C>::updateAdjacency() {
-      Loop<Dimension>(0, 3, [&](const auto& it) {
+      Loop<Dimension>(0, 3, [&](auto const& it) {
          adjacent[it] = nullptr;
       });
 
@@ -122,7 +122,7 @@ namespace AMR
          propagate = false;
          TVector<i64, 6> t {0, 1, 1, 1, 1, 2};
 
-         Loop<Dimension>(0, 3, [&](const auto& it) {
+         Loop<Dimension>(0, 3, [&](auto const& it) {
             Node*& adj = adjacent[it];
             auto x = index * 3 + it;
             for (u8 i = 0; i < Dimension; ++i)
@@ -142,7 +142,7 @@ namespace AMR
       }
 
       if (not isLeaf) {
-         Loop<Dimension>(0, 2, [&](const auto& it) {
+         Loop<Dimension>(0, 2, [&](auto const& it) {
             children[it]->updateAdjacency();
          });
       }
@@ -169,7 +169,7 @@ namespace AMR
          refinePlan.emplace_back(new RefinePlan(this));
       }
       else {
-         Loop<Dimension>(0, 2, [&](const auto& it) {
+         Loop<Dimension>(0, 2, [&](auto const& it) {
             auto child = children[it];
             for (auto rpit = child->refinePlan.begin();
                rpit != child->refinePlan.end();) {
@@ -205,7 +205,7 @@ namespace AMR
    template<Config C>
    void Node<C>::calculateRefinePlanRecursive() {
       if (not isLeaf) {
-         Loop<Dimension>(0, 2, [&](const auto& it) {
+         Loop<Dimension>(0, 2, [&](auto const& it) {
             children[it]->calculateRefinePlanRecursive();
          });
       }
@@ -217,7 +217,7 @@ namespace AMR
    void Node<C>::split(const Buffers::Tuple& buffers, const Vu64& position) {
       LglsAssumeDev(isLeaf, "Node isn't a leaf node");
 
-      Loop<Dimension>(0, 2, [&](const auto& it) {
+      Loop<Dimension>(0, 2, [&](auto const& it) {
          auto childPosition = position + it * C::BlockSize;
          children[it] = new Node(this, buffers, childPosition, it);
       });
@@ -232,7 +232,7 @@ namespace AMR
 
       downsampleAll();
 
-      Loop<Dimension>(0, 2, [&](const auto& it) {
+      Loop<Dimension>(0, 2, [&](auto const& it) {
          LglsAssumeDev(children[it]->isLeaf, "Child isn't is a leaf node");
          delete children[it];
          children[it] = nullptr;
@@ -245,7 +245,7 @@ namespace AMR
    void executeRefinePlan(const RefinePlan<C>& plan) {
       auto size = plan.size * C::BlockSize * 2 + 2;
       auto buffers = C::createBuffers(size);
-      Loop<C::Dimension>(0, plan.size, [&](const auto& it) {
+      Loop<C::Dimension>(0, plan.size, [&](auto const& it) {
          plan.nodes[it]->split(buffers, it);
       });
    }
@@ -254,7 +254,7 @@ namespace AMR
    void Node<C>::restructure() {
       if (not isLeaf) {
          int action = Action::Coarsen;
-         Loop<Dimension>(0, 2, [&](const auto& it) {
+         Loop<Dimension>(0, 2, [&](auto const& it) {
             action &= children[it]->action;
          });
 
@@ -263,7 +263,7 @@ namespace AMR
             return;
          }
 
-         Loop<Dimension>(0, 2, [&](const auto& it) {
+         Loop<Dimension>(0, 2, [&](auto const& it) {
             action &= children[it]->action;
          });
       }
