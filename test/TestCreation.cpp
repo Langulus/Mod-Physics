@@ -19,7 +19,7 @@ void CreationTest(Thing& parent) {
 
 template<class T>
 void CreationTestToken(Thing& parent, Token token) {
-   auto instance = parent.CreateUnitToken(token);
+   auto instance = parent.CreatePartToken(token);
    REQUIRE(instance.GetCount() == 1);
    REQUIRE(instance.IsSparse());
    REQUIRE(instance.CastsTo<T>());
