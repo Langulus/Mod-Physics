@@ -6,18 +6,17 @@
 
 namespace AMR
 {
-
    /// Construct a buffer                                                     
    /// Will allocate memory for D-dimensional buffer of a given size          
    ///   @param size - the size of the buffer along each dimension            
    TPL()
    Buffer<T, D>::Buffer(const Vu64& size)
       : mSize {size} {
-      LANGULUS_ASSERT(mSize[0] != 0, Construct, "Bad buffer size");
+      LglsAssert(mSize[0] != 0, "Bad buffer size");
       size_t bufferSize = static_cast<size_t>(mSize[0]);
 
       for (size_t i = 1; i < D; ++i) {
-         LANGULUS_ASSERT(mSize[i] != 0, Construct, "Bad buffer size");
+         LglsAssert(mSize[i] != 0, "Bad buffer size");
          mStride[i - 1] = bufferSize;
          bufferSize *= static_cast<size_t>(mSize[i]);
       }
@@ -63,8 +62,7 @@ namespace AMR
    TME()::operator[](const Vu64& coords) const -> T const& {
       return const_cast<Array*>(this)->operator[](coords);
    }
-
-} // namespace AMR
+}
 
 #undef TPL
 #undef TME
