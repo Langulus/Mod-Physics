@@ -34,7 +34,7 @@ SCENARIO("Physics creation", "[physics]") {
          auto root = Thing::Root<false>("Physics");
          
          WHEN("The instance is created via abstraction") {
-            CreationTest<A::World>(root);
+            CreationTest<Things::World>(root);
             CreationTest<Things::Instance>(root);
             CreationTest<A::Bond>(root);
             CreationTest<A::Field>(root);
@@ -46,7 +46,7 @@ SCENARIO("Physics creation", "[physics]") {
 
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
          WHEN("The instance is created via token") {
-            CreationTestToken<A::World>(root, "A::World");
+            CreationTestToken<Things::World>(root, "Things::World");
             CreationTestToken<Things::Instance>(root, "Things::Instance");
             CreationTestToken<A::Bond>(root, "A::Bond");
             CreationTestToken<A::Field>(root, "A::Field");

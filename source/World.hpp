@@ -18,10 +18,10 @@
 ///                                                                           
 /// Manages particles, instances, fields, constraints                         
 ///                                                                           
-struct Euclidean::World final : A::World, ProducedFrom<Physics> {
+struct Euclidean::World final : Things::World, ProducedFrom<Physics> {
    using CTTI_Abstract = No;
    using CTTI_Producer = Physics;
-   LANGULUS_BASES(A::World);
+   LANGULUS_BASES(Things::World);
    LANGULUS_VERBS(Verbs::Create);
 
 private:

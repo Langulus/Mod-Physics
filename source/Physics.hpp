@@ -15,9 +15,9 @@
 ///                                                                           
 /// Manages and produces Euclidean worlds                                     
 ///                                                                           
-struct Euclidean::Physics final : A::PhysicalModule {
+struct Euclidean::Physics final : Things::PhysicalModule {
    using CTTI_Abstract = No;
-   LANGULUS_BASES(A::PhysicalModule);
+   LANGULUS_BASES(Things::PhysicalModule);
    LANGULUS_VERBS(Verbs::Create);
 
 private:

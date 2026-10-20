@@ -10,7 +10,7 @@
 #include <Langulus/Factory.hpp>
 #include <Langulus/Math/Instance.hpp>
 #include <Langulus/CppAPI/Mesh.hpp>
-#include <Langulus/Color.hpp>
+#include <Langulus/Math/Color.hpp>
 
 
 ///                                                                           
