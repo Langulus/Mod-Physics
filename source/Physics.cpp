@@ -25,7 +25,7 @@ using namespace Euclidean;
 ///   @param runtime - the runtime that owns the module                       
 ///   @param descriptor - instructions for configuring the module             
 Physics::Physics(Runtime* runtime, Many const&)
-   : Resolvable {this}
+   : Downcastable {this}
    , Module     {runtime} {
    VERBOSE_PHYSICS("Initializing...");
    Math::RegisterVectors();

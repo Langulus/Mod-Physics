@@ -17,7 +17,7 @@ using namespace Euclidean;
 ///   @param producer - window owner                                          
 ///   @param descriptor - window descriptor                                   
 World::World(Physics* producer, Many const& descriptor)
-   : Resolvable   {this}
+   : Downcastable   {this}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Tags::Size>(descriptor, mSize);
