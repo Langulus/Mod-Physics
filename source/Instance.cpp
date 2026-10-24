@@ -86,7 +86,7 @@ void Instance::Move(Verb& verb) {
 /// Cull the instance, based on lod state                                     
 ///   @param state - the lod state to test                                    
 ///   @return true if instance is culled (doesn't intersect frusta)           
-bool Instance::Cull(const LOD& state) const noexcept {
+bool Instance::Cull(LOD const& state) const noexcept {
    // Quick octave-based cull                                           
    if (state.mLevel >= mData.mLevel + 1) {
       // We're looking at the instance from a higher octave             
@@ -110,19 +110,19 @@ Level Instance::GetLevel() const noexcept {
    return mData.mLevel;
 }
 
-Mat4 Instance::GetModelTransform(const LOD& lod) const noexcept {
+Mat4 Instance::GetModelTransform(LOD const& lod) const noexcept {
    return mData.GetModelTransform(lod.mLevel);
 }
 
-Mat4 Instance::GetModelTransform(const Level& level) const noexcept {
+Mat4 Instance::GetModelTransform(Level const& level) const noexcept {
    return mData.GetModelTransform(level);
 }
 
-Mat4 Instance::GetViewTransform(const LOD& lod) const noexcept {
+Mat4 Instance::GetViewTransform(LOD const& lod) const noexcept {
    return mData.GetViewTransform(lod.mLevel);
 }
 
-Mat4 Instance::GetViewTransform(const Level& level) const noexcept {
+Mat4 Instance::GetViewTransform(Level const& level) const noexcept {
    return mData.GetViewTransform(level);
 }
 

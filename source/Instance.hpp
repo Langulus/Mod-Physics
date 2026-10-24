@@ -41,11 +41,11 @@ public:
    void Update(Real);
    void Refresh() override;
    void Teardown();
-   auto Cull(const LOD&) const noexcept -> bool override;
+   auto Cull(LOD const&) const noexcept -> bool override;
    auto GetLevel() const noexcept -> Level override;
-   auto GetModelTransform(const LOD&) const noexcept -> Mat4 override;
-   auto GetModelTransform(const Level& = {}) const noexcept -> Mat4 override;
-   auto GetViewTransform(const LOD&) const noexcept -> Mat4 override;
-   auto GetViewTransform(const Level& = {}) const noexcept -> Mat4 override;
+   auto GetModelTransform(LOD const&) const noexcept -> Mat4 override;
+   auto GetModelTransform(Level const& = {}) const noexcept -> Mat4 override;
+   auto GetViewTransform(LOD const&) const noexcept -> Mat4 override;
+   auto GetViewTransform(Level const& = {}) const noexcept -> Mat4 override;
    auto GetColor() const noexcept -> RGBA override;
 };
