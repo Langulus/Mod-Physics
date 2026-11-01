@@ -13,11 +13,10 @@
 ///   Field                                                                   
 ///                                                                           
 /// Affects instances over a volume                                           
-///                                                                           
-struct Euclidean::Field : A::Field, Instance {
-   using CTTI_Abstract = No;
-   using CTTI_Producer = World;
-   LANGULUS_BASES(A::Field /*Instance base intentionally obscured*/);
+struct Euclidean::Field : Things::Field, Instance {
+   using CTTI_Abstract  = No;
+   using CTTI_Producer  = World;
+   using CTTI_Bases     = Things::Field; //Instance base intentionally obscured
 
 public:
    Field(World*, Many const&);

@@ -18,7 +18,6 @@
 ///                                                                           
 /// Manages position and orientation of particles, instances, fields,         
 /// constraints, and anything that can be instantiated in space.              
-///                                                                           
 struct Euclidean::Instance : Things::Instance, ProducedFrom<Euclidean::World> {
    using CTTI_Abstract  = No;
    using CTTI_Producer  = Euclidean::World;

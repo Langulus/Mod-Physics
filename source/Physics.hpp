@@ -14,11 +14,10 @@
 ///   Physics module                                                          
 ///                                                                           
 /// Manages and produces Euclidean worlds                                     
-///                                                                           
 struct Euclidean::Physics final : Things::PhysicalModule {
-   using CTTI_Abstract = No;
-   LANGULUS_BASES(Things::PhysicalModule);
-   LANGULUS_VERBS(Verbs::Create);
+   using CTTI_Abstract  = No;
+   using CTTI_Bases     = Things::PhysicalModule;
+   using CTTI_Ability   = Verbs::Create;
 
 private:
    // List of created worlds                                         

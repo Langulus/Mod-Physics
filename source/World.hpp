@@ -17,12 +17,11 @@
 ///   An Euclidean world                                                      
 ///                                                                           
 /// Manages particles, instances, fields, constraints                         
-///                                                                           
 struct Euclidean::World final : Things::World, ProducedFrom<Physics> {
-   using CTTI_Abstract = No;
-   using CTTI_Producer = Physics;
-   LANGULUS_BASES(Things::World);
-   LANGULUS_VERBS(Verbs::Create);
+   using CTTI_Abstract  = No;
+   using CTTI_Producer  = Physics;
+   using CTTI_Bases     = Things::World;
+   using CTTI_Ability   = Verbs::Create;
 
 private:
    // Particle systems are optimized for large quantity of              

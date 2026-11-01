@@ -13,11 +13,10 @@
 ///   Particle system                                                         
 ///                                                                           
 /// Manages particle emitters, colliders and state transitions                
-///                                                                           
-struct Euclidean::Particles : A::Particles, Instance {
-   using CTTI_Abstract = No;
-   using CTTI_Producer = World;
-   LANGULUS_BASES(A::Particles /*Instance base intentionally obscured*/);
+struct Euclidean::Particles : Things::Particles, Euclidean::Instance {
+   using CTTI_Abstract  = No;
+   using CTTI_Producer  = World;
+   using CTTI_Bases     = Things::Particles; //Euclidean::Instance base intentionally obscured
 
 public:
    Particles(World*, Many const&);

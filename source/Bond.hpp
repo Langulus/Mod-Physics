@@ -18,10 +18,9 @@
 /// whose parts have different behaviors like ragdolls and structures.        
 ///   Can emerge from simulation on collision, when some electromagnetic or   
 /// chemical interaction forms a strong bond.                                 
-///                                                                           
 struct Euclidean::Bond : Things::Bond, ProducedFrom<Euclidean::World> {
-   using CTTI_Abstract = No;
-   LANGULUS_BASES(A::Bond);
+   using CTTI_Abstract  = No;
+   using CTTI_Bases     = Things::Bond;
 
 public:
    Bond(World*, Many const&);
