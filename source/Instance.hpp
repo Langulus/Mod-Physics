@@ -33,7 +33,7 @@ private:
    Pin<RGBA, Tags::Color> mColor = Colors::White;
 
 public:
-   Instance(World*, Many const&);
+   Instance(World*, Neat const&);
 
    void Move(Verb&);
 

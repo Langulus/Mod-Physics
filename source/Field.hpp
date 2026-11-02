@@ -19,7 +19,7 @@ struct Euclidean::Field : Things::Field, Instance {
    using CTTI_Bases     = Things::Field; //Instance base intentionally obscured
 
 public:
-   Field(World*, Many const&);
+   Field(World*, Neat const&);
 
    void Update(Real);
    void Refresh() override;

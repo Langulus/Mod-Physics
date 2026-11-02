@@ -14,10 +14,10 @@ using namespace Euclidean;
 
 
 /// World construction                                                        
-///   @param producer - window owner                                          
-///   @param descriptor - window descriptor                                   
-World::World(Physics* producer, Many const& descriptor)
-   : Downcastable   {this}
+///   @param producer window owner                                            
+///   @param descriptor window descriptor                                     
+World::World(Physics* producer, Neat const& descriptor)
+   : Downcastable {this}
    , ProducedFrom {producer, descriptor} {
    // Extract properties from descriptor and hierarchy                  
    //SeekValueAux<Tags::Size>(descriptor, mSize);
@@ -66,7 +66,7 @@ void World::Update() {
 }
 
 /// Introduce instances, particles, etc.                                      
-///  @param verb - creation verb                                              
+///  @param verb creation verb                                                
 void World::Create(Verb& verb) {
    mInstances.Create(this, verb);
    mParticles.Create(this, verb);

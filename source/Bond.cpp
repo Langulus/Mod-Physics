@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// Bond construction                                                         
 ///   @param producer the worlds that ouns the constraint                     
 ///   @param descriptor constraint descriptor                                 
-Bond::Bond(World* producer, Many const& descriptor)
+Bond::Bond(World* producer, Neat const& descriptor)
    : Downcastable {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");

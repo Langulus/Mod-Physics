@@ -19,7 +19,7 @@ struct Euclidean::Particles : Things::Particles, Euclidean::Instance {
    using CTTI_Bases     = Things::Particles; //Euclidean::Instance base intentionally obscured
 
 public:
-   Particles(World*, Many const&);
+   Particles(World*, Neat const&);
 
    void Update(Real);
    void Refresh() override;

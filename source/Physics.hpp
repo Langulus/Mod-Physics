@@ -24,7 +24,7 @@ private:
    TFactory<Euclidean::World> mWorlds;
 
 public:
-   Physics(Runtime*, Many const&);
+   Physics(Runtime*, Neat const&);
 
    bool Update(Time);
    void Create(Verb&);

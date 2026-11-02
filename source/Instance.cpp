@@ -13,10 +13,10 @@ using namespace Euclidean;
 
 
 /// Instance construction                                                     
-///   @param producer - the world that owns the instance                      
-///   @param descriptor - instance descriptor                                 
-Instance::Instance(World* producer, Many const& descriptor)
-   : Downcastable   {this}
+///   @param producer the world that owns the instance                        
+///   @param descriptor instance descriptor                                   
+Instance::Instance(World* producer, Neat const& descriptor)
+   : Downcastable {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
    Couple(descriptor);
@@ -36,7 +36,7 @@ Instance::Instance(World* producer, Many const& descriptor)
 }
 
 /// Update the instance                                                       
-///   @param dt - time between updates, in seconds                            
+///   @param dt time between updates, in seconds                              
 void Instance::Update(Real dt) {
    // Apply one-time impulse                                            
    mData.mImpulse +=
@@ -78,13 +78,13 @@ void Instance::Refresh() {
 }
 
 /// Move, rotate, resize verb                                                 
-///   @param verb - the move verb                                             
+///   @param verb the move verb                                               
 void Instance::Move(Verb& verb) {
    mData.Move(verb);
 }
 
 /// Cull the instance, based on lod state                                     
-///   @param state - the lod state to test                                    
+///   @param state the lod state to test                                      
 ///   @return true if instance is culled (doesn't intersect frusta)           
 bool Instance::Cull(LOD const& state) const noexcept {
    // Quick octave-based cull                                           

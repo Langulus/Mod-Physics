@@ -11,6 +11,7 @@
 #include <Langulus/Math/Angle.hpp>
 #include <Langulus/Math/SimplexNoise.hpp>
 #include <Langulus/Math/Export.hpp>
+#include <Langulus/Profiler.hpp>
 
 LANGULUS_DEFINE_MODULE(
    Euclidean::Physics, 9, "Physics",
@@ -22,11 +23,11 @@ using namespace Euclidean;
 
 
 /// Module construction                                                       
-///   @param runtime - the runtime that owns the module                       
-///   @param descriptor - instructions for configuring the module             
-Physics::Physics(Runtime* runtime, Many const&)
+///   @param runtime the runtime that owns the module                         
+///   @param descriptor instructions for configuring the module               
+Physics::Physics(Runtime* runtime, Neat const&)
    : Downcastable {this}
-   , Module     {runtime} {
+   , Module       {runtime} {
    VERBOSE_PHYSICS("Initializing...");
    Math::RegisterVectors();
    Math::RegisterRanges();
@@ -42,7 +43,7 @@ void Physics::Teardown() {
 }
 
 /// Module update routine                                                     
-///   @param dt - time from last update                                       
+///   @param dt time from last update                                         
 bool Physics::Update(Time) {
    LglsProfile();
    for (auto& world : mWorlds)
@@ -51,7 +52,7 @@ bool Physics::Update(Time) {
 }
 
 /// Create/Destroy worlds                                                     
-///   @param verb - the creation/destruction verb                             
+///   @param verb the creation/destruction verb                               
 void Physics::Create(Verb& verb) {
    mWorlds.Create(this, verb);
 }

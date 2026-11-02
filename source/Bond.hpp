@@ -23,7 +23,7 @@ struct Euclidean::Bond : Things::Bond, ProducedFrom<Euclidean::World> {
    using CTTI_Bases     = Things::Bond;
 
 public:
-   Bond(World*, Many const&);
+   Bond(World*, Neat const&);
 
    void Update(Real);
    void Refresh() override;
