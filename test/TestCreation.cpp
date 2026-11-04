@@ -41,7 +41,7 @@ SCENARIO("Physics creation", "[physics]") {
             CreationTest<A::Particles>(root);
 
             root.DumpHierarchy();
-            REQUIRE(root.GetUnits().GetCount() == 5);
+            REQUIRE(root.GetParts().GetCount() == 5);
          }
 
       #if LANGULUS_FEATURE(MANAGED_REFLECTION)
@@ -53,7 +53,7 @@ SCENARIO("Physics creation", "[physics]") {
             CreationTestToken<A::Particles>(root, "A::Particles");
 
             root.DumpHierarchy();
-            REQUIRE(root.GetUnits().GetCount() == 5);
+            REQUIRE(root.GetParts().GetCount() == 5);
          }
       #endif
 
