@@ -59,7 +59,7 @@ private:
    Adaptive<Vec3> mLimit;
 
 public:
-   World(Physics*, Neat const&);
+   World(Physics const*, Neat const&);
 
    void Refresh();
    void Update();

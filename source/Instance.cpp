@@ -15,7 +15,7 @@ using namespace Euclidean;
 /// Instance construction                                                     
 ///   @param producer the world that owns the instance                        
 ///   @param descriptor instance descriptor                                   
-Instance::Instance(World* producer, Neat const& descriptor)
+Instance::Instance(World const* producer, Neat const& descriptor)
    : Downcastable {this}
    , ProducedFrom {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
