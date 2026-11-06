@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// Particle system construction                                              
 ///   @param producer window owner                                            
 ///   @param descriptor window descriptor                                     
-Particles::Particles(World* producer, Neat const& descriptor)
+Particles::Particles(World const* producer, Neat const& descriptor)
    : Downcastable {this}
    , Instance     {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");

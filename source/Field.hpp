@@ -15,11 +15,11 @@
 /// Affects instances over a volume                                           
 struct Euclidean::Field : Things::Field, Instance {
    using CTTI_Abstract  = No;
-   using CTTI_Producer  = World;
+   using CTTI_Producer  = Euclidean::World;
    using CTTI_Bases     = Things::Field; //Instance base intentionally obscured
 
 public:
-   Field(World*, Neat const&);
+   Field(World const*, Neat const&);
 
    void Update(Real);
    void Refresh() override;

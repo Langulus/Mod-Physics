@@ -20,6 +20,7 @@
 /// chemical interaction forms a strong bond.                                 
 struct Euclidean::Bond : Things::Bond, ProducedFrom<Euclidean::World> {
    using CTTI_Abstract  = No;
+   using CTTI_Producer  = Euclidean::World;
    using CTTI_Bases     = Things::Bond;
 
 public:

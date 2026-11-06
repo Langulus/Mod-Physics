@@ -15,11 +15,11 @@
 /// Manages particle emitters, colliders and state transitions                
 struct Euclidean::Particles : Things::Particles, Euclidean::Instance {
    using CTTI_Abstract  = No;
-   using CTTI_Producer  = World;
+   using CTTI_Producer  = Euclidean::World;
    using CTTI_Bases     = Things::Particles; //Euclidean::Instance base intentionally obscured
 
 public:
-   Particles(World*, Neat const&);
+   Particles(World const*, Neat const&);
 
    void Update(Real);
    void Refresh() override;

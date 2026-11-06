@@ -83,7 +83,7 @@ void Instance::Move(Verb& verb) {
    mData.Move(verb);
 }
 
-/// Cull the instance, based on lod state                                     
+/// Cull the instance, based on LOD state                                     
 ///   @param state the lod state to test                                      
 ///   @return true if instance is culled (doesn't intersect frusta)           
 bool Instance::Cull(LOD const& state) const noexcept {

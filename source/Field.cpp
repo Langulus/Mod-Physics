@@ -14,7 +14,7 @@ using namespace Euclidean;
 /// World construction                                                        
 ///   @param producer window owner                                            
 ///   @param descriptor window descriptor                                     
-Field::Field(World* producer, Neat const& descriptor)
+Field::Field(World const* producer, Neat const& descriptor)
    : Downcastable {this}
    , Instance     {producer, descriptor} {
    VERBOSE_PHYSICS("Initializing...");
