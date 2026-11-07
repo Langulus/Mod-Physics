@@ -68,7 +68,7 @@ void Instance::Update(Real dt) {
 
 /// First stage destruction                                                   
 void Instance::Teardown() {
-   mDomain.Reset();
+   (*mDomain).Reset();
    mData.mParent.Reset();
 }
 
