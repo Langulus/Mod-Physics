@@ -11,7 +11,7 @@
 
 template<class T>
 void CreationTest(Thing& parent) {
-   auto instance = parent.template CreateUnit<T>();
+   auto instance = parent.template CreatePart<T>();
    REQUIRE(instance.GetCount() == 1);
    REQUIRE(instance.IsSparse());
    REQUIRE(instance.template CastsTo<T>());

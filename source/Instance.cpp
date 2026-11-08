@@ -7,7 +7,7 @@
 ///                                                                           
 #include "Instance.hpp"
 #include "Physics.hpp"
-#include <Langulus/CppAPI/Mesh.hpp>
+#include <Langulus/Things/Hierarchy-Seek.inl>
 
 using namespace Euclidean;
 
