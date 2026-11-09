@@ -26,7 +26,7 @@ struct Euclidean::Instance : Things::Instance, ProducedFrom<Euclidean::World> {
 
 private:
    // Collision domain                                                  
-   Pin<Ref<Things::Mesh>> mDomain;
+   Pin<Things::Mesh*> mDomain;
    // Instance data                                                     
    Math::TInstance<Vec3> mData;
    // Instance color                                                    
