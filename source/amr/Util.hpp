@@ -1,5 +1,5 @@
 #pragma once
-#include "../Common.hpp"
+#include "../Export.hpp"
 
 
 namespace AMR
@@ -22,5 +22,4 @@ namespace AMR
    constexpr u64 neighbourhood_size(u64 exp) {
       return ipow(3, exp);
    }
-
-} // namespace AMR
+}

@@ -1,4 +1,4 @@
-#include <catch2/catch.hpp>
+#include <Langulus/Testing.hpp>
 #include "../../source/amr/Mesh.inl"
 #include <iostream>
 
@@ -18,7 +18,7 @@ struct GridI64 : GridConfig<i64>
 using Config2D = MeshConfig<2, 8, GridI64>;
 
 
-TEST_CASE("Create Node", "[mesh]")
+TEST_CASE("Create Node")
 {
     auto buffers = Config2D::createBuffers(16);
     Node<Config2D> node(nullptr, buffers, 0, 0);

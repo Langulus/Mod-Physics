@@ -1,8 +1,8 @@
-#include <catch2/catch.hpp>
+#include <Langulus/Testing.hpp>
 #include "../../source/amr/Buffer.hpp"
 
 
-TEST_CASE("Allocating buffers", "[buffer]") {
+TEST_CASE("Allocating buffers") {
    CHECK_THROWS((AMR::Buffer<int, 2>({0, 5})));
    CHECK_THROWS((AMR::Buffer<int, 4>({3, 0, 4, 6})));
    CHECK_NOTHROW((AMR::Buffer<int, 1>(1)));
@@ -11,7 +11,7 @@ TEST_CASE("Allocating buffers", "[buffer]") {
    CHECK_NOTHROW((AMR::Buffer<int, 5>({6, 2, 4, 3, 10})));
 }
 
-TEST_CASE("Calculating stride", "[buffer]") {
+TEST_CASE("Calculating stride") {
    {
       AMR::Buffer<int, 3> buf({1, 1, 1});
       CHECK(buf.mStride[0] == 1);
@@ -25,10 +25,10 @@ TEST_CASE("Calculating stride", "[buffer]") {
    }
 }
 
-TEST_CASE("Creating arrays", "[buffer]") {
+TEST_CASE("Creating arrays") {
    // TODO
 }
 
-TEST_CASE("Array indexing", "[buffer]") {
+TEST_CASE("Array indexing") {
    // TODO
 }

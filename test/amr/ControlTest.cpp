@@ -1,16 +1,16 @@
-#include <catch2/catch.hpp>
+#include <Langulus/Testing.hpp>
 #include "../../source/amr/Control.hpp"
 #include <iostream>
 #include <limits>
 
 
-TEST_CASE("mapTuple", "[control]")
+TEST_CASE("mapTuple")
 {
     auto y = AMR::mapTuple(std::make_tuple(1, 2.0), [](auto x) { return x+1;});
     CHECK(std::get<0>(y) == 2);
     CHECK(std::get<1>(y) == 3.0);
 }
 
-TEST_CASE("Loop::simple", "[control]")
+TEST_CASE("Loop::simple")
 {
 }
