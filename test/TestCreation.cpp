@@ -7,6 +7,11 @@
 ///                                                                           
 #include <Langulus/CppAPI/Physical.hpp>
 #include <Langulus/Testing.hpp>
+#include <Langulus/Thing.hpp>
+#include <Langulus/Allocator.hpp>
+
+using namespace Langulus;
+using Things::Thing;
 
 
 template<class T>
@@ -25,20 +30,20 @@ void CreationTestToken(Thing& parent, Token token) {
    REQUIRE(instance.CastsTo<T>());
 }
 
-SCENARIO("Physics creation", "[physics]") {
-   static Allocator::State memoryState;
+SCENARIO("Physics creation") {
+   static MemoryState memoryState;
 
-   for (int repeat = 0; repeat != 10; ++repeat) {
-      GIVEN(std::string("Init and shutdown cycle #") + std::to_string(repeat)) {
+   GIVEN("Init and shutdown cycles") {
+      for (int repeat = 0; repeat != 10; ++repeat) {
          // Create root entity                                          
          auto root = Thing::Root<false>("Physics");
          
          WHEN("The instance is created via abstraction") {
             CreationTest<Things::World>(root);
             CreationTest<Things::Instance>(root);
-            CreationTest<A::Bond>(root);
-            CreationTest<A::Field>(root);
-            CreationTest<A::Particles>(root);
+            CreationTest<Things::Bond>(root);
+            CreationTest<Things::Field>(root);
+            CreationTest<Things::Particles>(root);
 
             root.DumpHierarchy();
             REQUIRE(root.GetParts().GetCount() == 5);
@@ -48,17 +53,17 @@ SCENARIO("Physics creation", "[physics]") {
          WHEN("The instance is created via token") {
             CreationTestToken<Things::World>(root, "Things::World");
             CreationTestToken<Things::Instance>(root, "Things::Instance");
-            CreationTestToken<A::Bond>(root, "A::Bond");
-            CreationTestToken<A::Field>(root, "A::Field");
-            CreationTestToken<A::Particles>(root, "A::Particles");
+            CreationTestToken<Things::Bond>(root, "Things::Bond");
+            CreationTestToken<Things::Field>(root, "Things::Field");
+            CreationTestToken<Things::Particles>(root, "Things::Particles");
 
             root.DumpHierarchy();
             REQUIRE(root.GetParts().GetCount() == 5);
          }
       #endif
 
-         // Check for memory leaks after each cycle                     
          REQUIRE(memoryState.Assert());
+         REQUIRE_FALSE(Allocator::CollectGarbage());
 
          root.Reference(-1);
       }

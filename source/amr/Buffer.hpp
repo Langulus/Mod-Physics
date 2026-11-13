@@ -4,7 +4,6 @@
 
 namespace AMR
 {
-
    /// A non-copyable and non-movable D-dimensional buffer                    
    ///   @tparam T - the type of contained data                               
    ///   @tparam D - the number of dimensions                                 
@@ -31,7 +30,7 @@ namespace AMR
 
 
    /// A D-dimensional array                                                  
-   /// interfaces a part of a buffer???
+   /// interfaces a part of a buffer???                                       
    ///   @tparam T - the type of contained data                               
    ///   @tparam D - the number of dimensions                                 
    template<CT::NotVoid T, u8 D>
@@ -85,7 +84,6 @@ namespace AMR
          return Getter {*this, base};
       }
    };
-
-} // namespace AMR
+}
 
 #include "Buffer.inl"
