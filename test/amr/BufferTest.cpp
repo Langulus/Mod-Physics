@@ -1,4 +1,5 @@
 #include <Langulus/Testing.hpp>
+#include <Langulus/Thing.hpp>
 #include "../../source/amr/Buffer.hpp"
 
 

@@ -8,9 +8,9 @@
 #pragma once
 #include "Export.hpp"
 #include <Langulus/Factory.hpp>
-#include <Langulus/Math/Instance.hpp>
 #include <Langulus/CppAPI/Mesh.hpp>
 #include <Langulus/Math/Color.hpp>
+#include <Langulus/Math/Instance.hpp>
 
 
 ///                                                                           

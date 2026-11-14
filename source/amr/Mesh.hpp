@@ -7,7 +7,6 @@
 
 namespace AMR
 {
-
    using Index32 = u32;
    using Index64 = u64;
 
@@ -44,9 +43,9 @@ namespace AMR
       using Vu64    = TVector<u64, Dimension>;
       using Vi64    = TVector<i64, Dimension>;
       using Grids   = Types<G...>;
-      using Datas   = LangulusTypegen(Grids, ([]<class T>{ return TypeOf<T>{}; }));
-      using Arrays  = LangulusTypegen(Datas, ([]<class T>{ return Types<Array<T, D>> {}; }));
-      using Buffers = LangulusTypegen(Datas, ([]<class T>{ return Ref<Buffer<T, D>> {}; }));
+      using Datas   = decltype(GenerateTypes(Grids{}, []<class T> { return TypeOf<T> {};          }));
+      using Arrays  = decltype(GenerateTypes(Datas{}, []<class T> { return Types<Array<T, D>> {}; }));
+      using Buffers = decltype(GenerateTypes(Datas{}, []<class T> { return Ref<Buffer<T, D>> {};  }));
 
       static auto createBuffers(const Vu64& size) -> Buffers::Tuple;
    };
@@ -60,10 +59,10 @@ namespace AMR
       static constexpr bool CTTI_GridConfigTag = true;
       using CTTI_Typed = T;
 
-      static void upsample(auto src, auto dst) {
+      static void upsample(auto, auto) {
          static_assert(false, "You have to implement this");
       }
-      static void downsample(auto src, auto dst) {
+      static void downsample(auto, auto) {
          static_assert(false, "You have to implement this");
       }
    };
