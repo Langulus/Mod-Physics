@@ -39,7 +39,7 @@ public:
 
    void Update(Real);
    void Refresh() override;
-   void Teardown();
+   void Teardown() override;
    auto Cull(LOD const&) const noexcept -> bool override;
    auto GetLevel() const noexcept -> Level override;
    auto GetModelTransform(LOD const&) const noexcept -> Mat4 override;

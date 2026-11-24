@@ -70,6 +70,8 @@ void Instance::Update(Real dt) {
 void Instance::Teardown() {
    mDomain.Reset();
    mData.mParent.Reset();
+
+   Things::Instance::Teardown();
 }
 
 /// Refresh the instance's properties on environment change                   
